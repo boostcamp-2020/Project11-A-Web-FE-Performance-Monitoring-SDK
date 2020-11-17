@@ -1,0 +1,8 @@
+groups:
+  - name: devs
+    reviewers: 4
+    usernames: 
+      - gitdog01
+      - Kangsukmin
+      - maong0927
+      - Eunbin-Kim
