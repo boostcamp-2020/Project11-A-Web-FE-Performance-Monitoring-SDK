@@ -1,7 +1,7 @@
-const sample = 'hello, world';
+import * as Express from './express';
+import * as React from './react';
 
-const sampleFunction = (input: string) => {
-  console.log(input);
-};
-
-sampleFunction(sample);
+function captureExceptionTest(error: Error): Error {
+  return error;
+}
+export default { captureExceptionTest, Express, React };
