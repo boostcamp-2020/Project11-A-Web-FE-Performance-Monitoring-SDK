@@ -1,6 +1,6 @@
 {
   "name": "santry_test",
-  "version": "0.0.7",
+  "version": "0.0.29",
   "description": "sentry clone project for education",
   "main": "dist/src/index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     },
     "testRegex": "\\.test\\.ts$",
     "moduleFileExtensions": [
-      "ts", "js"
+      "ts",
+      "js"
     ],
     "globals": {
       "ts-jest": {

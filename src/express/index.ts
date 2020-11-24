@@ -1,1 +1,1 @@
-export { SantryInit, Santry } from './expressInit';
+export { init, errorHandler } from './expressInit';

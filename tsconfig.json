@@ -5,6 +5,7 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "allowJs": true,
     "baseUrl": "./src",
     "paths": {
       "@root/*":["./*"],
