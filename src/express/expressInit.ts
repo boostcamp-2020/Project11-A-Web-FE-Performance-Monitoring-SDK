@@ -7,24 +7,27 @@ class ExpressInit extends BaseInit {
     super(options);
   }
 
-  protected createEvent(event: Event) {
-    event.platform = event.platform || 'node-express';
-    event.sdk = {
-      ...event.sdk,
-      name: SDK_NAME,
-      version: SDK_VERSION,
+  /*
+  public async captureException(error: Error) {
+    const data = {
+      error,
+      node: process.version,
+      platform: process.platform,
     };
-    return super.createEvent(event);
+    return super.captureException(data);
   }
-
-  /* protected createEvent(err, req: Request, res, next) {
-    {
-      browser: req.useragent.browser,
-      version: req.useragent.version,
-      os: req.useragent.os,
-      platform: req.useragent.platform
-    }
-  } */
+*/
+  public errorHandler = () => {
+    return function middleware(err, req: Request, res, next) {
+      const data = {
+        err,
+        header: req.headers,
+      };
+      console.log('mine=================');
+      console.log(data);
+      next();
+    };
+  };
 }
 
 export let Santry;

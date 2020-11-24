@@ -1,8 +1,8 @@
 {
-  "name": "santry",
-  "version": "0.0.1",
+  "name": "santry_test",
+  "version": "0.0.7",
   "description": "sentry clone project for education",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "start": "nodemon",
     "build": "tsc",

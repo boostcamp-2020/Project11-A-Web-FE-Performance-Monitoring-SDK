@@ -1,6 +1,4 @@
 import { SantryInit, Santry } from '../src/express';
-import { InitOptions } from '../src/baseInit';
-
 describe('init', () => {
   test('Success init', () => {
     const option = {

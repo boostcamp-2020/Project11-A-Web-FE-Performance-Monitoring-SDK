@@ -15,7 +15,7 @@ export abstract class BaseInit {
   protected constructor(options: InitOptions) {
     this.options = options;
     this.baseAxios = axios.create({
-      baseURL: 'your backend server URL',
+      baseURL: 'http://101.101.210.34:3000/',
       headers: { Authorization: `Bearer ${this.options.token}` },
       params: {
         id: this.options.projectId,
@@ -23,16 +23,7 @@ export abstract class BaseInit {
     });
   }
 
-  protected createEvent(event: Event) {
-    event.timeStamp = new Date();
-    event.os = {
-      version: os.release(),
-      name: os.platform(),
-    };
-    return event;
-  }
-
-  public async captureException(error: Error) {
+  public async captureException(error: any) {
     const eventId: AxiosResponse = await this.baseAxios.post('/error', {
       data: error,
     });

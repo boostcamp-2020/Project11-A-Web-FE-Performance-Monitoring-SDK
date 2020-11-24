@@ -1,1 +1,1 @@
-export { init, ReactInit } from './reactInit';
+export { SantryInit, Santry } from './reactInit';
