@@ -1,10 +1,16 @@
+import { AxiosInstance } from 'axios';
+
 export interface Event {
   timeStamp: Date;
   createdBy?: User;
-  os: Os;
+  os?: Os;
   browser?: Browser;
-  platform: string;
-  sdk: Sdk;
+  platform?: string;
+  sdk?: Sdk;
+  url?: string;
+  type?: string; // error.name
+  value?: string; // error.message
+  stacktrace?: StackTrace[]; // error.stack
 }
 
 export interface Sdk {
@@ -19,8 +25,8 @@ export interface Client {
 }
 
 export interface User {
-  ipAdress: string;
-  email: string;
+  ipAdress?: string;
+  email?: string;
 }
 
 export interface Os {
@@ -31,4 +37,22 @@ export interface Os {
 export interface Browser {
   version: string;
   name: string;
+}
+
+export interface StackTrace {
+  filename?: string;
+  function?: string;
+  lineno?: number;
+  colno?: number;
+}
+
+export interface Options {
+  projectId: number;
+  token: string;
+  baseAxios?: AxiosInstance;
+  sdk?: {
+    version: string;
+    name: string;
+  };
+  platform?: string;
 }
