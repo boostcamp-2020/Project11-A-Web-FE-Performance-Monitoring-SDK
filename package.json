@@ -1,12 +1,27 @@
 {
-  "name": "santry",
-  "version": "0.0.1",
+  "name": "santry_test",
+  "version": "0.0.29",
   "description": "sentry clone project for education",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "start": "nodemon",
     "build": "tsc",
-    "test": "jest ./src/tests/*.test.js"
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "globals": {
+      "ts-jest": {
+        "enableTsDiagnostics": true
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -19,6 +34,7 @@
   },
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.13.0",
@@ -29,10 +45,14 @@
     "jest": "^26.6.3",
     "nodemon": "^2.0.6",
     "prettier": "^2.1.2",
+    "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "axios": "^0.21.0"
+    "@types/ua-parser-js": "^0.7.33",
+    "axios": "^0.21.0",
+    "error-stack-parser": "^2.0.6",
+    "ua-parser-js": "^0.7.22"
   }
 }

@@ -3,7 +3,15 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "dist",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@root/*":["./*"],
+      "@express/*":["express/*"],
+      "@react/*":["react/*"],
+    },
   },
-  "include": ["src/*.ts", "src/*.js"]
+  "include": ["src/*.ts", "src/*.js" ,"tests/*.test.ts", "tests/*.test.js"],
 }
