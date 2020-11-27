@@ -2,3 +2,4 @@ node_modules/
 tsconfig.example.json
 dist/
 .env
+coverage/
