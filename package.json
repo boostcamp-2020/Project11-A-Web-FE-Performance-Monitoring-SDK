@@ -53,6 +53,7 @@
     "@types/ua-parser-js": "^0.7.33",
     "axios": "^0.21.0",
     "error-stack-parser": "^2.0.6",
+    "fs": "0.0.1-security",
     "ua-parser-js": "^0.7.22"
   }
 }

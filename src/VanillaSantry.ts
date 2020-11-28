@@ -1,5 +1,5 @@
 import BaseSantry from './baseSantry';
-import { Event } from '../type';
+import { Event } from './type';
 
 export class VanillaSantry extends BaseSantry {
   platform = 'vanillaJS';

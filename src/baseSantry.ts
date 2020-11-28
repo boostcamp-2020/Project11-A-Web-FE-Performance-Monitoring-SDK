@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Event } from './type';
 import * as ErrorStackParser from 'error-stack-parser';
 import { UAParser } from 'ua-parser-js';
 import { parseDSN } from './utils/parseDSN';
+import { Event } from './type';
 import axios from 'axios';
+import fs from 'fs';
 
 export interface Santry {
   handleUncaughtError(error: Error): void;
@@ -86,5 +87,36 @@ export default abstract class BaseSantry implements Santry {
         event,
       })
       .catch((err) => console.error(err));
+  }
+
+  public getErrorContext(error: Error): string[] {
+    const Context = [];
+    const myRe = /[(](.*?)[)]/gm;
+    const mystack = error.stack.match(myRe).map((element: string) => {
+      return element.replace(/[()]/g, '');
+    });
+
+    mystack.forEach((element: string) => {
+      const tail: RegExpExecArray = /:[0-9]*:[0-9]*/gm.exec(element);
+      const location = element.replace(/:[0-9]*:[0-9]*/gm, '');
+      if (tail.length === 0) {
+        return;
+      } else {
+        const file = fs.readFileSync(location).toString().split('\r\n');
+      }
+      /*
+      try {
+        const file = fs.readFileSync(location).toString().split('\r\n');
+        let i: number;
+        for (i = line - 1; i <= line + 1; i++) {
+          // console.log(String(i) + ' ' + file[i]);
+        }
+      } catch (error) {
+        return;
+      }
+      */
+    });
+
+    return mystack;
   }
 }
