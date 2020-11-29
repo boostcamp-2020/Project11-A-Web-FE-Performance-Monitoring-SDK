@@ -13,8 +13,8 @@ export class NodeSantry extends BaseSantry {
     const event = super.captureError(error);
     event.platform = this.platform;
 
-    const { userAgent } = window.navigator;
-    this.addUserAgentInfo(event, userAgent);
+    /* const { userAgent } = window.navigator;
+    this.addUserAgentInfo(event, userAgent);*/
 
     this.sendEvent(event);
     return event;
