@@ -13,7 +13,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./membership/Project11-A-Web-FE-Performance-Monitoring-SDK/tsconfig.json",
+    "project": "./tsconfig.json",
     "ecmaVersion": 12,
     "sourceType": "module"
   },
