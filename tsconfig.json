@@ -2,16 +2,17 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "dist",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "allowJs": true,
-    "baseUrl": "./src",
-    "paths": {
-      "@root/*":["./*"],
-      "@express/*":["express/*"],
-      "@react/*":["react/*"],
-    },
+    "baseUrl": "packages",
+    "types":["node"],
   },
-  "include": ["src/*.ts", "src/*.js" ,"tests/*.test.ts", "tests/*.test.js"],
+  "exclude": [
+    "*.config.js", 
+    "packages/**/node_modules/*.d.ts",
+    "node_modules/*.d.ts",
+    "**/dist/**/*"
+  ]
 }
+
