@@ -15,3 +15,9 @@ const initWithClass = (santryClass, dsn: string): void => {
 export const init = {
   vanilla: (dsn: string): void => initWithClass(NodeSantry, dsn),
 };
+
+export const captureError = (error: Error): void => {
+  const { santry } = getGlobalObject<Window>();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  santry.hub.captureError(error);
+};
