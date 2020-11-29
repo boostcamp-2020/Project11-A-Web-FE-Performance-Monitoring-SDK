@@ -1,8 +1,4 @@
 {
-  "name": "santry",
-  "version": "0.0.1",
-  "description": "sentry clone project for education",
-  "main": "dist/src/index.js",
   "scripts": {
     "start": "nodemon",
     "build": "tsc",
@@ -23,16 +19,10 @@
       }
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
-  },
-  "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
