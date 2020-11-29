@@ -11,6 +11,7 @@ export interface Event {
   type?: string; // error.name
   value?: string; // error.message
   stacktrace?: StackTrace[]; // error.stack
+  context?: Stack<Stack<string>>; // error context
 }
 
 export interface Sdk {
@@ -55,4 +56,22 @@ export interface Options {
     name: string;
   };
   platform?: string;
+}
+
+export class Stack<T> {
+  private data: T[] = [];
+
+  constructor() {}
+
+  push(item: T): void {
+    this.data.push(item);
+  }
+
+  pop(): T {
+    return this.data.pop();
+  }
+
+  size(): number {
+    return this.data.length;
+  }
 }

@@ -2,7 +2,7 @@
 import * as ErrorStackParser from 'error-stack-parser';
 import { UAParser } from 'ua-parser-js';
 import { parseDSN } from './utils/parseDSN';
-import { Event } from './type';
+import { Event, Stack } from './type';
 import axios from 'axios';
 import fs from 'fs';
 
@@ -35,16 +35,41 @@ export default abstract class BaseSantry implements Santry {
     const parsedStackList = ErrorStackParser.parse(error);
     event.type = error.name;
     event.value = error.message;
+    const newStack = new Stack<Stack<string>>();
     if (parsedStackList) {
       event.stacktrace = parsedStackList.map((stack) => {
-        return {
-          filename: stack.fileName,
-          function: stack.functionName,
-          lineno: stack.lineNumber,
-          colno: stack.columnNumber,
-        };
+        try {
+          String(stack).replace(/(\\r\\n|\\n|\\r)/gm, '\\n');
+          const LinesArray = new Stack<string>();
+          const file = fs.readFileSync(stack.fileName).toString().split('\n');
+          const startline = stack.lineNumber < 3 ? 1 : stack.lineNumber - 2;
+          const endline =
+            stack.lineNumber + 2 > file.length
+              ? file.length
+              : stack.lineNumber + 2;
+          let i: number;
+          for (i = startline; i < endline + 1; i++) {
+            LinesArray.push(file[i - 1]);
+          }
+          newStack.push(LinesArray);
+          return {
+            filename: stack.fileName,
+            function: stack.functionName,
+            lineno: stack.lineNumber,
+            colno: stack.columnNumber,
+          };
+        } catch {
+          newStack.push(new Stack<string>());
+          return {
+            filename: stack.fileName,
+            function: stack.functionName,
+            lineno: stack.lineNumber,
+            colno: stack.columnNumber,
+          };
+        }
       });
     }
+    event.context = newStack;
     return event;
   }
 
@@ -87,36 +112,5 @@ export default abstract class BaseSantry implements Santry {
         event,
       })
       .catch((err) => console.error(err));
-  }
-
-  public getErrorContext(error: Error): string[] {
-    const Context = [];
-    const myRe = /[(](.*?)[)]/gm;
-    const mystack = error.stack.match(myRe).map((element: string) => {
-      return element.replace(/[()]/g, '');
-    });
-
-    mystack.forEach((element: string) => {
-      const tail: RegExpExecArray = /:[0-9]*:[0-9]*/gm.exec(element);
-      const location = element.replace(/:[0-9]*:[0-9]*/gm, '');
-      if (tail.length === 0) {
-        return;
-      } else {
-        const file = fs.readFileSync(location).toString().split('\r\n');
-      }
-      /*
-      try {
-        const file = fs.readFileSync(location).toString().split('\r\n');
-        let i: number;
-        for (i = line - 1; i <= line + 1; i++) {
-          // console.log(String(i) + ' ' + file[i]);
-        }
-      } catch (error) {
-        return;
-      }
-      */
-    });
-
-    return mystack;
   }
 }
