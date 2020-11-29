@@ -1,9 +1,6 @@
 ### node_modules
 node_modules/
 
-### package-lock.json
-packages/*/package-lock.json
-package-lock.json
 
 ### dist 
 packages/*/dist/
