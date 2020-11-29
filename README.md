@@ -1,7 +1,7 @@
 <div align="center">
 	<br>
 	<br>
-	<img width="200" src="media/santry.svg" alt="Santry">
+	<img width="200" src="media/santry-main.svg" alt="Santry">
 	<br>
 	<br>
 	<br>
