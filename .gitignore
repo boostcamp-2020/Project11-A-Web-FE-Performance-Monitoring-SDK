@@ -1,5 +1,12 @@
 node_modules/
+packages/*/package-lock.json
+package-lock.json
+packages/*/dist/
 tsconfig.example.json
 dist/
 .env
 coverage/
+
+yarn-error.log
+npm-debug.log
+lerna-debug.log
