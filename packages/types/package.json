@@ -14,6 +14,7 @@
     "dist"
   ],
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.com/"
   },
   "repository": {
@@ -26,5 +27,6 @@
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
-  }
+  },
+  "gitHead": "9c5caa331fd65679d3ae0249ff00d87ad2b2f01a"
 }
