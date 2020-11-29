@@ -1,12 +1,24 @@
+### node_modules
 node_modules/
+
+### package-lock.json
 packages/*/package-lock.json
 package-lock.json
+
+### dist 
 packages/*/dist/
-tsconfig.example.json
 dist/
+
+### .env 파일 
 .env
+
+### coverage 파일 
 coverage/
 
+### yarn.lock 파일 
+yarn.lock
+
+### log 파일 
 yarn-error.log
 npm-debug.log
 lerna-debug.log
