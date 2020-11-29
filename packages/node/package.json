@@ -28,6 +28,8 @@
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
   "dependencies": {
-    "@santry/core": "^1.0.0"
+    "@santry/core": "^1.0.0",
+    "@santry/types": "^1.0.0",
+    "@santry/utils": "^1.0.0"
   }
 }

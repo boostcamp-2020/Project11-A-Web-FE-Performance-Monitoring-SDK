@@ -5,7 +5,7 @@
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/tree/master/packages/core#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/index",
   "directories": {
     "src": "dist",
     "test": "__tests__"
@@ -26,5 +26,11 @@
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
+  },
+  "dependencies": {
+    "@santry/types": "^1.0.0",
+    "@santry/utils": "^1.0.0",
+    "axios": "^0.21.0",
+    "error-stack-parser": "^2.0.6"
   }
 }
