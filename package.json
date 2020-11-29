@@ -1,7 +1,6 @@
 {
   "scripts": {
     "start": "nodemon",
-    "build": "tsc",
     "test": "jest"
   },
   "jest": {
