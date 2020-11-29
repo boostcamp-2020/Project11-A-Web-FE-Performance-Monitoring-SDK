@@ -1,9 +1,9 @@
 {
-  "name": "@santry/core",
+  "name": "@santry/node",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "Hera <maong0927@gmail.com>",
-  "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/tree/master/packages/core#readme",
+  "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "directories": {
@@ -21,8 +21,7 @@
     "url": "git+https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "tsc -p ./tsconfig.json"
+    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
