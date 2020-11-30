@@ -1,0 +1,1 @@
+export { BaseSantry } from './baseSantry';

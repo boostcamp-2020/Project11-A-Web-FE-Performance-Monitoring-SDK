@@ -1,0 +1,38 @@
+{
+  "name": "@santry/node",
+  "version": "1.0.6",
+  "description": "> TODO: description",
+  "author": "Hera <maong0927@gmail.com>",
+  "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "directories": {
+    "src": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "tsc -p ./tsconfig.json"
+  },
+  "bugs": {
+    "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
+  },
+  "dependencies": {
+    "@santry/core": "^1.0.2",
+    "@santry/types": "^1.0.2",
+    "@santry/utils": "^1.0.2",
+    "ua-parser-js": "^0.7.22"
+  },
+  "gitHead": "9c5caa331fd65679d3ae0249ff00d87ad2b2f01a"
+}
