@@ -1,11 +1,4 @@
-import { Santry } from '@santry/types';
-
-interface SantryGlobalObject {
-  santry: {
-    dsn?: string;
-    hub?: Santry;
-  };
-}
+import { SantryGlobalObject } from '@santry/types';
 
 export const getGlobalObject = <T>(): T & SantryGlobalObject => {
   return (typeof global !== undefined

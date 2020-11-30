@@ -52,3 +52,12 @@ export interface Santry {
   createEventFromError(event: Event, error: Error): Event;
   addUserAgentInfo(event: Event, userAgent: string): void;
 }
+
+export interface SantryGlobalObject {
+  santry: {
+    dsn?: string;
+    hub?: Santry;
+  };
+}
+
+export type SantryClass = new (dsn: string) => Santry;
