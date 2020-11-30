@@ -2,12 +2,12 @@
   "name": "@santry/browser",
   "version": "1.0.4",
   "description": "Santry for browser",
-  "author": "Eunbin <qpmz1212@naver.com>",
+  "author": "eunbinn <qpmz1212@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "ISC",
   "main": "dist/index.js",
   "directories": {
-    "lib": "lib",
+    "src": "dist",
     "test": "__tests__"
   },
   "files": [
@@ -34,5 +34,5 @@
     "@santry/types": "^1.0.5",
     "@santry/utils": "^1.0.5"
   },
-  "gitHead": "2d606ddedc63f398021c797cc2d6f60371a5f4a2"
+  "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad"
 }
