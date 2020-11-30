@@ -14,7 +14,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.com/"
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,6 @@
     "@santry/core": "^1.0.4",
     "@santry/types": "^1.0.4",
     "@santry/utils": "^1.0.4"
-  }
+  },
+  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
 }
