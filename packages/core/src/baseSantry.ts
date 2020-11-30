@@ -4,17 +4,6 @@ import { UAParser } from 'ua-parser-js';
 import { parseDsn } from '@santry/utils';
 import axios from 'axios';
 
-/* export interface Santry {
-  handleUncaughtError(error: Error): void;
-  handleUncaughtRejection(rejection: PromiseRejectionEvent): void;
-  captureError(error: Error): Event;
-  sendEvent(event: Event): void;
-  createEventFromError(event: Event, error: Error): Event;
-  addUserAgentInfo(event: Event, userAgent: string): void;
-} */
-
-//export type SantryClass = new (dsn: string) => Santry;
-
 export abstract class BaseSantry {
   private readonly dsn?: string;
   private readonly options?: any;
@@ -46,8 +35,6 @@ export abstract class BaseSantry {
     return event;
   }
 
-  // option : uncaughtException On, off
-  // option : percent
   public addUserAgentInfo(event: Event, userAgent: string): void {
     const uaParser = new UAParser();
     const parsedUserAgent = uaParser.setUA(userAgent);
@@ -77,13 +64,18 @@ export abstract class BaseSantry {
 
   public sendEvent(event: Event): void {
     const { token, url } = parseDsn(this.dsn);
-    axios
-      .post(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        event,
-      })
-      .catch((err) => console.error(err));
+    const baseURL = `http://${url}`;
+
+    const request = axios.create({
+      baseURL,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application-json',
+        'Content-type': 'application-json',
+      },
+      withCredentials: true,
+    });
+
+    request.post('/');
   }
 }

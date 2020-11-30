@@ -1,6 +1,6 @@
 {
   "name": "@santry/core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "> TODO: description",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/tree/master/packages/core#readme",
@@ -23,14 +23,15 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "tsc -p ./tsconfig.json"
+    "build": "tsc -p ./tsconfig.json",
+    "watch": "tsc -w -p ./tsconfig.json"
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
   "dependencies": {
-    "@santry/types": "^1.0.2",
-    "@santry/utils": "^1.0.2",
+    "@santry/types": "^1.0.3",
+    "@santry/utils": "^1.0.3",
     "axios": "^0.21.0",
     "error-stack-parser": "^2.0.6"
   },

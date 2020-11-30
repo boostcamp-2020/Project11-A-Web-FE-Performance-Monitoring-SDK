@@ -1,8 +1,8 @@
 const { init, captureError } = require('@santry/node');
 
-const dsn = 'ABC@123.123.123.123';
+const dsn = '[token]@[url]';
 
-init.vanilla(dsn);
+init(dsn);
 
 const testError = () => {
   try {

@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "start": "nodemon",
     "test": "jest"
   },
   "jest": {
