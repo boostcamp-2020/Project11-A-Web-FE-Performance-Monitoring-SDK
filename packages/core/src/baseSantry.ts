@@ -1,4 +1,4 @@
-import { Event } from '@santry/types';
+import { Event, Options } from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
 import { UAParser } from 'ua-parser-js';
 import { parseDsn } from '@santry/utils';
@@ -6,10 +6,11 @@ import axios from 'axios';
 
 export abstract class BaseSantry {
   private readonly dsn?: string;
-  private readonly options?: any;
+  private readonly options?: Options;
 
-  public constructor(dsn: string) {
+  public constructor(dsn: string, options: Options = {}) {
     this.dsn = dsn;
+    this.options = options;
   }
 
   protected abstract platform;
@@ -20,6 +21,15 @@ export abstract class BaseSantry {
 
   public createEventFromError(event: Event, error: Error): Event {
     const parsedStackList = ErrorStackParser.parse(error);
+    event.environment = 'production';
+
+    if (this.options.release) {
+      event.release = this.options.release;
+    }
+
+    if (this.options.environment) {
+      event.environment = this.options.environment;
+    }
     event.type = error.name;
     event.value = error.message;
     if (parsedStackList) {
@@ -63,6 +73,15 @@ export abstract class BaseSantry {
   }
 
   public sendEvent(event: Event): void {
+    // traceSampleRate option
+    console.log(event);
+    if (
+      this.options.traceSampleRate &&
+      Math.random() > this.options.traceSampleRate
+    ) {
+      return;
+    }
+
     const { token, url } = parseDsn(this.dsn);
     const baseURL = `http://${url}`;
 
@@ -76,6 +95,6 @@ export abstract class BaseSantry {
       withCredentials: true,
     });
 
-    request.post('/');
+    request.post('/', event);
   }
 }
