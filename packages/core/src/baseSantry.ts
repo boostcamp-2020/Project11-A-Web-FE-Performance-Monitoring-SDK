@@ -64,13 +64,18 @@ export abstract class BaseSantry {
 
   public sendEvent(event: Event): void {
     const { token, url } = parseDsn(this.dsn);
-    axios
-      .post(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        event,
-      })
-      .catch((err) => console.error(err));
+    const baseURL = `http://${url}`;
+
+    const request = axios.create({
+      baseURL,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application-json',
+        'Content-type': 'application-json',
+      },
+      withCredentials: true,
+    });
+
+    request.post('/');
   }
 }
