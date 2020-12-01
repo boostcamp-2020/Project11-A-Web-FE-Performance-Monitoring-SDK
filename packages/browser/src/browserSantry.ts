@@ -11,11 +11,11 @@ export class BrowserSantry extends BaseSantry {
   platform = 'browser';
 
   public captureError(error: Error): Event {
+    /* const { userAgent } = window.navigator;
+    const user = this.addUserAgentInfo(userAgent);
+    */
     const event = this.createEventFromError(error);
     this.sendEvent(event);
-
-    /* const { userAgent } = window.navigator;
-    this.addUserAgentInfo(event, userAgent); */
 
     return event;
   }

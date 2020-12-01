@@ -21,13 +21,16 @@ export abstract class BaseSantry {
     rejection: PromiseRejectionEvent,
   ): void;
 
-  public createEventFromError(error: Error): Event {
+  public createEventFromError(error: Error, ...extraInfo: any[]): any {
+    // extraInfo ( 플랫폼 별로 특화된 정보 )
+    const event = extraInfo.reduce((acc, info) => {
+      return { ...acc, ...info };
+    }, {});
+
     // 공통 정보 1
-    const event: Event = {
-      timeStamp: new Date(),
-      platform: this.platform,
-      sdk: this.sdk,
-    };
+    event.timeStamp = new Date();
+    event.platform = this.platform;
+    event.sdk = this.sdk;
 
     // 공통 정보 2
     const parsedStackList = ErrorStackParser.parse(error);
@@ -53,10 +56,12 @@ export abstract class BaseSantry {
     if (this.options.environment) {
       event.environment = this.options.environment;
     }
+
     return event;
   }
 
-  public addUserAgentInfo(event: Event, userAgent: string): void {
+  public addUserAgentInfo(userAgent: string): Event {
+    const event: any = {};
     const uaParser = new UAParser();
     const parsedUserAgent = uaParser.setUA(userAgent);
     event.os = {
@@ -70,6 +75,8 @@ export abstract class BaseSantry {
       name: parsedUserAgent.getBrowser().name,
       version: parsedUserAgent.getBrowser().version,
     };
+
+    return event;
   }
 
   public sendEvent(event: Event): void {
