@@ -1,19 +1,7 @@
 import { getGlobalObject } from '@santry/utils';
 import { NodeSantry } from './nodeSantry';
-import { SantryClass, Options } from '@santry/types';
-
-const initWithClass = (
-  santryClass: SantryClass,
-  dsn: string,
-  options: Options,
-): void => {
-  const santry = new santryClass(dsn, options);
-  const globalObject = getGlobalObject();
-  globalObject.santry = {
-    dsn,
-    hub: santry,
-  };
-};
+import { Options } from '@santry/types';
+import { initWithClass } from '@santry/core';
 
 export const init = (dsn: string, options: Options): void => {
   initWithClass(NodeSantry, dsn, options);
