@@ -1,6 +1,0 @@
-{
-  "name": "examples",
-  "dependencies": {
-    "@santry/node": "^1.0.3"
-  }
-}

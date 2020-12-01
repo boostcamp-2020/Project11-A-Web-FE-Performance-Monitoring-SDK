@@ -15,27 +15,22 @@ export abstract class BaseSantry {
     this.options = options;
   }
 
+  protected abstract captureError(error: Error): Event;
   public abstract handleUncaughtError(error: Error): void;
   public abstract handleUncaughtRejection(
     rejection: PromiseRejectionEvent,
   ): void;
 
   public createEventFromError(error: Error): Event {
+    // 공통 정보 1
     const event: Event = {
       timeStamp: new Date(),
       platform: this.platform,
       sdk: this.sdk,
     };
 
+    // 공통 정보 2
     const parsedStackList = ErrorStackParser.parse(error);
-    event.environment = 'production';
-    if (this.options.release) {
-      event.release = this.options.release;
-    }
-
-    if (this.options.environment) {
-      event.environment = this.options.environment;
-    }
     event.type = error.name;
     event.value = error.message;
     if (parsedStackList) {
@@ -47,6 +42,16 @@ export abstract class BaseSantry {
           colno: stack.columnNumber,
         };
       });
+    }
+
+    // 옵션
+    event.environment = 'production';
+    if (this.options.release) {
+      event.release = this.options.release;
+    }
+
+    if (this.options.environment) {
+      event.environment = this.options.environment;
     }
     return event;
   }
@@ -65,10 +70,6 @@ export abstract class BaseSantry {
       name: parsedUserAgent.getBrowser().name,
       version: parsedUserAgent.getBrowser().version,
     };
-  }
-
-  public captureError(error: Error): Event {
-    return this.createEventFromError(error);
   }
 
   public sendEvent(event: Event): void {

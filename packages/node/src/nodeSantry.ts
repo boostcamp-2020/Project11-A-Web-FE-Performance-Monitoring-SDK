@@ -8,8 +8,9 @@ export class NodeSantry extends BaseSantry {
     this.platform = 'node';
     this.sdk = { name: packages.name, version: packages.version };
   }
+
   public captureError(error: Error): Event {
-    const event = super.captureError(error);
+    const event = this.createEventFromError(error);
     this.sendEvent(event);
     return event;
   }

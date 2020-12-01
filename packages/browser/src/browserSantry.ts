@@ -1,17 +1,22 @@
 import { BaseSantry } from '@santry/core';
-import { Event } from '@santry/types';
+import { Event, Options } from '@santry/types';
+import packages from '../package.json';
 
 export class BrowserSantry extends BaseSantry {
+  public constructor(dsn: string, options: Options) {
+    super(dsn, options);
+    this.platform = 'browser';
+    this.sdk = { name: packages.name, version: packages.version };
+  }
   platform = 'browser';
 
   public captureError(error: Error): Event {
-    const event = super.captureError(error);
-    event.platform = this.platform;
-
-    const { userAgent } = window.navigator;
-    this.addUserAgentInfo(event, userAgent);
-
+    const event = this.createEventFromError(error);
     this.sendEvent(event);
+
+    /* const { userAgent } = window.navigator;
+    this.addUserAgentInfo(event, userAgent); */
+
     return event;
   }
 
