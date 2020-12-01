@@ -45,7 +45,13 @@
 - [Install](#Install)
 
 ## Install
+### node 버전 
 
 ```
-$ npm install santry
+$ npm install @node/santry
+```
+### browser 버전
+
+```
+$ npm install @node/browser
 ```
