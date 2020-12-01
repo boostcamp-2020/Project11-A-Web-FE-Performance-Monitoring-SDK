@@ -1,6 +1,5 @@
 import { Event, Options, Sdk } from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
-import { UAParser } from 'ua-parser-js';
 import { parseDsn } from '@santry/utils';
 import axios from 'axios';
 
@@ -56,25 +55,6 @@ export abstract class BaseSantry {
     if (this.options.environment) {
       event.environment = this.options.environment;
     }
-
-    return event;
-  }
-
-  public addUserAgentInfo(userAgent: string): Event {
-    const event: any = {};
-    const uaParser = new UAParser();
-    const parsedUserAgent = uaParser.setUA(userAgent);
-    event.os = {
-      ...event.os,
-      name: parsedUserAgent.getOS().name,
-      version: parsedUserAgent.getOS().version,
-    };
-
-    event.browser = {
-      ...event.browser,
-      name: parsedUserAgent.getBrowser().name,
-      version: parsedUserAgent.getBrowser().version,
-    };
 
     return event;
   }

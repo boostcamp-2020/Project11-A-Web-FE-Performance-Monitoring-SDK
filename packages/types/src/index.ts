@@ -57,7 +57,6 @@ export interface Santry {
   captureError(error: Error): Event;
   sendEvent(event: Event): void;
   createEventFromError(error: Error): Event;
-  addUserAgentInfo(userAgent: string): any;
 }
 
 export interface SantryGlobalObject {
