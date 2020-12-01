@@ -5,6 +5,8 @@ export const addUserAgentInfo = (): Event => {
   const event: any = {};
   const uaParser = new UAParser();
   const parsedUserAgent = uaParser.setUA(userAgent);
+  event.runtime = process.version;
+  event.platform = process.platform;
   event.os = {
     ...event.os,
     name: parsedUserAgent.getOS().name,
