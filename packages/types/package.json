@@ -1,6 +1,6 @@
 {
   "name": "@santry/types",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "> TODO: description",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
@@ -29,5 +29,5 @@
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
-  "gitHead": "9c5caa331fd65679d3ae0249ff00d87ad2b2f01a"
+  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
 }
