@@ -35,5 +35,9 @@
     "@santry/utils": "^1.1.0",
     "ua-parser-js": "^0.7.22"
   },
-  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
+  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12",
+  "devDependencies": {
+    "@types/express": "^4.17.9",
+    "express": "^4.17.1"
+  }
 }
