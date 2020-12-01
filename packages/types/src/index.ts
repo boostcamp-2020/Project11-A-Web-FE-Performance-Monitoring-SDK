@@ -1,4 +1,6 @@
 export interface Event {
+  release?: string;
+  environment?: string;
   timeStamp: Date;
   createdBy?: User;
   os?: Os;
@@ -43,6 +45,11 @@ export interface StackTrace {
   lineno?: number;
   colno?: number;
 }
+export interface Options {
+  traceSampleRate?: number;
+  release?: string;
+  environment?: string;
+}
 
 export interface Santry {
   handleUncaughtError(error: Error): void;
@@ -60,4 +67,4 @@ export interface SantryGlobalObject {
   };
 }
 
-export type SantryClass = new (dsn: string) => Santry;
+export type SantryClass = new (dsn: string, options: Options) => Santry;
