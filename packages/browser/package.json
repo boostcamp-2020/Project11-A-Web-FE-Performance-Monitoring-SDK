@@ -1,11 +1,11 @@
 {
-  "name": "@santry/types",
-  "version": "1.1.0",
-  "description": "> TODO: description",
-  "author": "Hera <maong0927@gmail.com>",
+  "name": "@santry/browser",
+  "version": "1.0.4",
+  "description": "Santry for browser",
+  "author": "eunbinn <qpmz1212@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
-  "license": "MIT",
-  "main": "dist/index",
+  "license": "ISC",
+  "main": "dist/index.js",
   "directories": {
     "src": "dist",
     "test": "__tests__"
@@ -29,5 +29,10 @@
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
-  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
+  "dependencies": {
+    "@santry/core": "^1.0.5",
+    "@santry/types": "^1.0.5",
+    "@santry/utils": "^1.0.5"
+  },
+  "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad"
 }
