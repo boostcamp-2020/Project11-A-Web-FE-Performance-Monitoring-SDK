@@ -8,6 +8,6 @@ export const init = (dsn: string, options: Options): void => {
 };
 
 export const captureError = (error: Error): void => {
-  const { santry } = getGlobalObject<Window>();
+  const { santry } = getGlobalObject<NodeJS.Global>();
   santry.hub.captureError(error);
 };

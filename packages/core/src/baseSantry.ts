@@ -1,28 +1,34 @@
-import { Event, Options } from '@santry/types';
+import { Event, Options, Sdk } from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
 import { UAParser } from 'ua-parser-js';
 import { parseDsn } from '@santry/utils';
 import axios from 'axios';
 
 export abstract class BaseSantry {
-  private readonly dsn?: string;
+  private readonly dsn: string;
   private readonly options?: Options;
+  protected platform: string;
+  protected sdk: Sdk;
 
   public constructor(dsn: string, options: Options = {}) {
     this.dsn = dsn;
     this.options = options;
   }
 
-  protected abstract platform;
   public abstract handleUncaughtError(error: Error): void;
   public abstract handleUncaughtRejection(
     rejection: PromiseRejectionEvent,
   ): void;
 
-  public createEventFromError(event: Event, error: Error): Event {
+  public createEventFromError(error: Error): Event {
+    const event: Event = {
+      timeStamp: new Date(),
+      platform: this.platform,
+      sdk: this.sdk,
+    };
+
     const parsedStackList = ErrorStackParser.parse(error);
     event.environment = 'production';
-
     if (this.options.release) {
       event.release = this.options.release;
     }
@@ -62,14 +68,7 @@ export abstract class BaseSantry {
   }
 
   public captureError(error: Error): Event {
-    const event: Event = {
-      timeStamp: new Date(),
-      sdk: {
-        name: 'santry',
-        version: '0.1.0',
-      },
-    };
-    return this.createEventFromError(event, error);
+    return this.createEventFromError(error);
   }
 
   public sendEvent(event: Event): void {
