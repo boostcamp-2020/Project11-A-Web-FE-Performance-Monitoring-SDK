@@ -46,11 +46,14 @@
 
 ## Install
 ### node 버전 
+[@santry/node](https://www.npmjs.com/package/@santry/node)
 
 ```
 $ npm install @santry/node
 ```
+
 ### browser 버전
+[@santry/browser](https://www.npmjs.com/package/@santry/browser)
 
 ```
 $ npm install @santry/browser
