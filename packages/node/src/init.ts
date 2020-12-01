@@ -1,9 +1,13 @@
 import { getGlobalObject } from '@santry/utils';
 import { NodeSantry } from './nodeSantry';
-import { SantryClass } from '@santry/types';
+import { SantryClass, Options } from '@santry/types';
 
-const initWithClass = (santryClass: SantryClass, dsn: string): void => {
-  const santry = new santryClass(dsn);
+const initWithClass = (
+  santryClass: SantryClass,
+  dsn: string,
+  options: Options,
+): void => {
+  const santry = new santryClass(dsn, options);
   const globalObject = getGlobalObject();
   globalObject.santry = {
     dsn,
@@ -11,8 +15,8 @@ const initWithClass = (santryClass: SantryClass, dsn: string): void => {
   };
 };
 
-export const init = (dsn: string): void => {
-  initWithClass(NodeSantry, dsn);
+export const init = (dsn: string, options: Options): void => {
+  initWithClass(NodeSantry, dsn, options);
 };
 
 export const captureError = (error: Error): void => {
