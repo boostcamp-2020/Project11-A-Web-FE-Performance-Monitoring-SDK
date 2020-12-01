@@ -61,7 +61,6 @@ export abstract class BaseSantry {
 
   public sendEvent(event: Event): void {
     // traceSampleRate option
-    console.log(event);
     if (
       this.options.traceSampleRate &&
       Math.random() > this.options.traceSampleRate
@@ -70,18 +69,19 @@ export abstract class BaseSantry {
     }
 
     const { token, url } = parseDsn(this.dsn);
+
     const baseURL = `http://${url}`;
 
     const request = axios.create({
       baseURL,
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: 'application-json',
-        'Content-type': 'application-json',
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        Cache: 'no-cache',
       },
       withCredentials: true,
     });
-
     request.post('/', event);
   }
 }
