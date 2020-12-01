@@ -48,10 +48,10 @@
 ### node 버전 
 
 ```
-$ npm install @node/santry
+$ npm install @santry/node
 ```
 ### browser 버전
 
 ```
-$ npm install @node/browser
+$ npm install @santry/browser
 ```
