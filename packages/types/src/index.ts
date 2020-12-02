@@ -57,6 +57,7 @@ export interface Santry {
   handleUncaughtError(error: Error): void;
   handleUncaughtRejection(rejection: PromiseRejectionEvent): void;
   captureError(error: Error): Event;
+  captureMessage(message: string);
   sendEvent(event: Event): void;
   createEvent(content: Error | string, ...extraInfo: any[]): Event;
   setContext(title: string, contents: any): void;

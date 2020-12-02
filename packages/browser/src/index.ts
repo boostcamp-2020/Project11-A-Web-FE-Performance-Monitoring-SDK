@@ -1,1 +1,7 @@
-export { init, captureError } from './init';
+export {
+  init,
+  captureError,
+  captureMessage,
+  setContext,
+  setLevel,
+} from './init';

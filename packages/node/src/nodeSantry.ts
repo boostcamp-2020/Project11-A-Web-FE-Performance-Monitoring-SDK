@@ -15,6 +15,11 @@ export class NodeSantry extends BaseSantry {
     return event;
   }
 
+  public captureMessage(message: string): void {
+    const event = this.createEvent(message);
+    this.sendEvent(event);
+  }
+
   public handleUncaughtError(error: Error): void {
     return;
   }

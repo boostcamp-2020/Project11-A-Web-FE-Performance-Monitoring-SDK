@@ -29,6 +29,7 @@ export abstract class BaseSantry {
   }
 
   protected abstract captureError(error: Error): Event;
+  protected abstract captureMessage(content: string): void;
   public abstract handleUncaughtError(error: Error): void;
   public abstract handleUncaughtRejection(
     rejection: PromiseRejectionEvent,

@@ -16,6 +16,11 @@ export class BrowserSantry extends BaseSantry {
     return event;
   }
 
+  public captureMessage(message: string): void {
+    const event = this.createEvent(message, browserUserAgentInfo());
+    this.sendEvent(event);
+  }
+
   public handleUncaughtError(error: Error): void {
     return;
   }

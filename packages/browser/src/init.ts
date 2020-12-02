@@ -11,3 +11,18 @@ export const captureError = (error: Error): void => {
   const { santry } = getGlobalObject<Window>();
   santry.hub.captureError(error);
 };
+
+export const captureMessage = (message: string): void => {
+  const { santry } = getGlobalObject<Window>();
+  santry.hub.captureMessage(message);
+};
+
+export const setContext = (title: string, contents: any): void => {
+  const { santry } = getGlobalObject<Window>();
+  santry.hub.setContext(title, contents);
+};
+
+export const setLevel = (level: string): void => {
+  const { santry } = getGlobalObject<Window>();
+  santry.hub.setLevel(level);
+};
