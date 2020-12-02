@@ -11,7 +11,7 @@ export class BrowserSantry extends BaseSantry {
   }
 
   public captureError(error: Error): Event {
-    const event = this.createEventFromError(error, browserUserAgentInfo());
+    const event = this.createEvent(error, browserUserAgentInfo());
     this.sendEvent(event);
     return event;
   }

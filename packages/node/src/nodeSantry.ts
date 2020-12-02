@@ -10,7 +10,7 @@ export class NodeSantry extends BaseSantry {
   }
 
   public captureError(error: Error): Event {
-    const event = this.createEventFromError(error);
+    const event = this.createEvent(error);
     this.sendEvent(event);
     return event;
   }

@@ -33,7 +33,7 @@ export abstract class BaseSantry {
     rejection: PromiseRejectionEvent,
   ): void;
 
-  public createEventFromError(error: Error, ...extraInfo: any[]): any {
+  public createEvent(content: Error | string, ...extraInfo: any[]): any {
     // extraInfo ( 플랫폼 별로 특화된 정보 )
     const event = extraInfo.reduce((acc, info) => {
       return { ...acc, ...info };
@@ -46,19 +46,25 @@ export abstract class BaseSantry {
     event.platform = this.platform;
     event.sdk = this.sdk;
 
+    // 메시지인 경우
+    if (typeof content === 'string') {
+    }
+
     // Error 정보
-    const parsedStackList = ErrorStackParser.parse(error);
-    event.type = error.name;
-    event.value = error.message;
-    if (parsedStackList) {
-      event.stacktrace = parsedStackList.map((stack) => {
-        return {
-          filename: stack.fileName,
-          function: stack.functionName,
-          lineno: stack.lineNumber,
-          colno: stack.columnNumber,
-        };
-      });
+    else {
+      const parsedStackList = ErrorStackParser.parse(content);
+      event.type = content.name;
+      event.value = content.message;
+      if (parsedStackList) {
+        event.stacktrace = parsedStackList.map((stack) => {
+          return {
+            filename: stack.fileName,
+            function: stack.functionName,
+            lineno: stack.lineNumber,
+            colno: stack.columnNumber,
+          };
+        });
+      }
     }
 
     // 옵션
