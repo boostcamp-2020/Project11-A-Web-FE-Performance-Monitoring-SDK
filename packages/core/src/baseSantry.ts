@@ -6,6 +6,7 @@ import axios from 'axios';
 export abstract class BaseSantry {
   private readonly options?: Options;
   private readonly request;
+  protected contexts;
   protected platform: string;
   protected sdk: Sdk;
 
@@ -23,6 +24,7 @@ export abstract class BaseSantry {
       withCredentials: true,
     });
     this.options = options;
+    this.contexts = {};
   }
 
   protected abstract captureError(error: Error): Event;
@@ -37,12 +39,14 @@ export abstract class BaseSantry {
       return { ...acc, ...info };
     }, {});
 
+    event.contexts = this.contexts;
+
     // 공통 정보 1
     event.timeStamp = new Date();
     event.platform = this.platform;
     event.sdk = this.sdk;
 
-    // 공통 정보 2
+    // Error 정보
     const parsedStackList = ErrorStackParser.parse(error);
     event.type = error.name;
     event.value = error.message;
@@ -78,6 +82,11 @@ export abstract class BaseSantry {
     ) {
       return;
     }
+    console.log(event);
     this.request.post('/', event);
+  }
+
+  public setContext(title: string, content: any): void {
+    this.contexts[title] = content;
   }
 }

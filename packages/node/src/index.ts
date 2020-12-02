@@ -1,2 +1,2 @@
-export { init, captureError } from './init';
+export { init, captureError, setContext } from './init';
 export { errorHandler } from './handlers';
