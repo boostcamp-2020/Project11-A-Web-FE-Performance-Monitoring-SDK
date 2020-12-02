@@ -1,4 +1,4 @@
-import { Event, Options, Sdk } from '@santry/types';
+import { Event, Options, Sdk, Level } from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
 import { parseDsn } from '@santry/utils';
 import axios from 'axios';
@@ -6,7 +6,8 @@ import axios from 'axios';
 export abstract class BaseSantry {
   private readonly options?: Options;
   private readonly request;
-  protected contexts;
+  private contexts;
+  private level;
   protected platform: string;
   protected sdk: Sdk;
 
@@ -40,18 +41,23 @@ export abstract class BaseSantry {
     }, {});
 
     event.contexts = this.contexts;
-
+    event.level = this.level;
     // 공통 정보 1
     event.timeStamp = new Date();
     event.platform = this.platform;
     event.sdk = this.sdk;
 
+    event.level = this.level;
+
     // 메시지인 경우
     if (typeof content === 'string') {
+      event.message = content;
+      if (!event.level) event.level = 'info';
     }
 
     // Error 정보
     else {
+      if (!event.level) event.level = 'error';
       const parsedStackList = ErrorStackParser.parse(content);
       event.type = content.name;
       event.value = content.message;
@@ -94,5 +100,8 @@ export abstract class BaseSantry {
 
   public setContext(title: string, content: any): void {
     this.contexts[title] = content;
+  }
+  public setLevel(level: string): void {
+    if (Level.has(level)) this.level = level;
   }
 }

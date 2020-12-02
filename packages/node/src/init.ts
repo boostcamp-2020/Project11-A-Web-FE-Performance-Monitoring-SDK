@@ -16,3 +16,8 @@ export const setContext = (title: string, contents: any): void => {
   const { santry } = getGlobalObject<NodeJS.Global>();
   santry.hub.setContext(title, contents);
 };
+
+export const setLevel = (level: string): void => {
+  const { santry } = getGlobalObject<NodeJS.Global>();
+  santry.hub.setLevel(level);
+};

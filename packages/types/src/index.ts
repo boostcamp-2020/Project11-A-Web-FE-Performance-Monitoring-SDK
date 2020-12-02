@@ -60,6 +60,7 @@ export interface Santry {
   sendEvent(event: Event): void;
   createEvent(content: Error | string, ...extraInfo: any[]): Event;
   setContext(title: string, contents: any): void;
+  setLevel(level: string);
 }
 
 export interface SantryGlobalObject {

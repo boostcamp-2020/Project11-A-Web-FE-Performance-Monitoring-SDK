@@ -1,9 +1,9 @@
-export const enum Level {
-  Fatal = 'fatal',
-  Error = 'error',
-  Warning = 'warning',
-  Log = 'log',
-  Info = 'info',
-  Debug = 'debug',
-  Critical = 'critical',
-}
+export const Level = new Set([
+  'fatal',
+  'error',
+  'warning',
+  'log',
+  'info',
+  'debug',
+  'critical',
+]);
