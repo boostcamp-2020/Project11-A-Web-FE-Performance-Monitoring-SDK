@@ -1,6 +1,9 @@
 import * as http from 'http';
-import { parseRequest } from './parseRequest';
-import { captureError, createEventFromError } from '../core/index';
+import {
+  parseRequest,
+  getGlobalObject,
+  expressUserAgentInfo,
+} from '@santry/utils';
 
 export const errorHandler = (): ((
   error: Error,
@@ -14,12 +17,13 @@ export const errorHandler = (): ((
     res: http.ServerResponse,
     next: () => void,
   ) {
-    const timeStamp = new Date();
-    const baseEvent = {
-      timeStamp,
-    };
-    const event = parseRequest(baseEvent, req);
-    captureError(createEventFromError(event, error));
+    const { santry } = getGlobalObject<NodeJS.Global>();
+    const event = santry.hub.createEventFromError(
+      error,
+      parseRequest(req),
+      expressUserAgentInfo(req),
+    );
+    santry.hub.sendEvent(event);
     next();
   };
 };

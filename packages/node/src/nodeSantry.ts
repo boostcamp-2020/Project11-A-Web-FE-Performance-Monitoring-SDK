@@ -1,12 +1,16 @@
 import { BaseSantry } from '@santry/core';
-import { Event } from '@santry/types';
+import { Event, Options } from '@santry/types';
+import packages from '../package.json';
 
 export class NodeSantry extends BaseSantry {
-  platform = 'node';
+  public constructor(dsn: string, options: Options) {
+    super(dsn, options);
+    this.platform = 'node';
+    this.sdk = { name: packages.name, version: packages.version };
+  }
 
   public captureError(error: Error): Event {
-    const event = super.captureError(error);
-    event.platform = this.platform;
+    const event = this.createEventFromError(error);
     this.sendEvent(event);
     return event;
   }
