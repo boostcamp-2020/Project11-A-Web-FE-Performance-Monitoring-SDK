@@ -4,13 +4,24 @@ import { parseDsn } from '@santry/utils';
 import axios from 'axios';
 
 export abstract class BaseSantry {
-  private readonly dsn: string;
   private readonly options?: Options;
+  private readonly request;
   protected platform: string;
   protected sdk: Sdk;
 
   public constructor(dsn: string, options: Options = {}) {
-    this.dsn = dsn;
+    const { token, url } = parseDsn(dsn);
+    const baseURL = `http://${url}`;
+    this.request = axios.create({
+      baseURL,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        Cache: 'no-cache',
+      },
+      withCredentials: true,
+    });
     this.options = options;
   }
 
@@ -67,21 +78,6 @@ export abstract class BaseSantry {
     ) {
       return;
     }
-
-    const { token, url } = parseDsn(this.dsn);
-
-    const baseURL = `http://${url}`;
-
-    const request = axios.create({
-      baseURL,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json',
-        'Content-type': 'application/json',
-        Cache: 'no-cache',
-      },
-      withCredentials: true,
-    });
-    request.post('/', event);
+    this.request.post('/', event);
   }
 }
