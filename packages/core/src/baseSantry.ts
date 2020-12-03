@@ -62,8 +62,6 @@ export abstract class BaseSantry {
     event.platform = this.platform;
     event.sdk = this.sdk;
 
-    event.level = this.level;
-
     // 메시지인 경우
     if (typeof content === 'string') {
       event.message = content;
