@@ -1,9 +1,9 @@
-import { SantryClass, Options } from '@santry/types';
+import { SantryClass, Options, Dsn } from '@santry/types';
 import { getGlobalObject } from '@santry/utils';
 
 export const initWithClass = (
   santryClass: SantryClass,
-  dsn: string,
+  dsn: Dsn,
   options: Options,
 ): void => {
   const santry = new santryClass(dsn, options);
