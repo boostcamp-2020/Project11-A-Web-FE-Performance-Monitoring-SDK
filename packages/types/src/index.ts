@@ -1,3 +1,5 @@
+export { Level } from './level';
+
 export interface Event {
   release?: string;
   environment?: string;
@@ -55,8 +57,11 @@ export interface Santry {
   handleUncaughtError(error: Error): void;
   handleUncaughtRejection(rejection: PromiseRejectionEvent): void;
   captureError(error: Error): Event;
+  captureMessage(message: string);
   sendEvent(event: Event): void;
-  createEventFromError(error: Error, ...extraInfo: any[]): Event;
+  createEvent(content: Error | string, ...extraInfo: any[]): Event;
+  setContext(title: string, contents: any): void;
+  setLevel(level: string);
 }
 
 export interface SantryGlobalObject {

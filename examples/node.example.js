@@ -1,4 +1,9 @@
-const { init, captureError } = require('@santry/node');
+const {
+  init,
+  captureError,
+  captureMessage,
+  setLevel,
+} = require('@santry/node');
 
 const dsn = '[token]@[url]';
 
@@ -8,6 +13,8 @@ init(dsn, {
   environment: 'production',
 });
 
+setLevel('fatal');
+captureMessage("hello I'm Hera");
 const testError = () => {
   try {
     throw new Error('testing Error');
