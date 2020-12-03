@@ -1,11 +1,11 @@
 import { getGlobalObject } from '@santry/utils';
-import { Options } from '@santry/types';
+import { Options, Message, Dsn, Title, Contents } from '@santry/types';
 import { BrowserSantry } from './browserSantry';
 import { initWithClass } from '@santry/core';
 
 const { santry } = getGlobalObject<Window>();
 
-export const init = (dsn: string, options: Options) => {
+export const init = (dsn: Dsn, options: Options): void => {
   initWithClass(BrowserSantry, dsn, options);
 };
 
@@ -13,11 +13,11 @@ export const captureError = (error: Error): void => {
   santry.hub.captureError(error);
 };
 
-export const captureMessage = (message: string): void => {
+export const captureMessage = (message: Message): void => {
   santry.hub.captureMessage(message);
 };
 
-export const setContext = (title: string, contents: any): void => {
+export const setContext = (title: Title, contents: Contents): void => {
   santry.hub.setContext(title, contents);
 };
 

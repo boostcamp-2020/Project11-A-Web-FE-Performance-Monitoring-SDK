@@ -71,4 +71,9 @@ export interface SantryGlobalObject {
   };
 }
 
+export type Message = string;
+export type Dsn = string;
+export type Title = string;
+export type Contents = Record<string, string>;
+
 export type SantryClass = new (dsn: string, options: Options) => Santry;
