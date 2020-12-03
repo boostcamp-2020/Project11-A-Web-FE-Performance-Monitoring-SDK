@@ -1,10 +1,10 @@
 import { BaseSantry } from '@santry/core';
-import { Event, Options } from '@santry/types';
+import { Event, Options, Dsn, Message } from '@santry/types';
 import packages from '../package.json';
 import { browserUserAgentInfo } from '@santry/utils';
 
 export class BrowserSantry extends BaseSantry {
-  public constructor(dsn: string, options: Options) {
+  public constructor(dsn: Dsn, options: Options) {
     super(dsn, options);
     this.platform = 'browser';
     this.sdk = { name: packages.name, version: packages.version };
@@ -16,7 +16,7 @@ export class BrowserSantry extends BaseSantry {
     return event;
   }
 
-  public captureMessage(message: string): void {
+  public captureMessage(message: Message): void {
     const event = this.createEvent(message, browserUserAgentInfo());
     this.sendEvent(event);
   }

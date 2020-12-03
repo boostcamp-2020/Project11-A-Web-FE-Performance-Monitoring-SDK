@@ -1,17 +1,27 @@
-import { Event, Options, Sdk, Level } from '@santry/types';
+import {
+  Event,
+  Options,
+  Sdk,
+  Level,
+  Dsn,
+  Message,
+  Context,
+  Contexts,
+  Title,
+} from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
 import { parseDsn } from '@santry/utils';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 export abstract class BaseSantry {
   private readonly options?: Options;
-  private readonly request;
-  private contexts;
-  private level;
+  private readonly request: AxiosInstance;
+  private contexts: Contexts;
+  private level: string;
   protected platform: string;
   protected sdk: Sdk;
 
-  public constructor(dsn: string, options: Options = {}) {
+  public constructor(dsn: Dsn, options: Options = {}) {
     const { token, url } = parseDsn(dsn);
     const baseURL = `http://${url}`;
     this.request = axios.create({
@@ -28,14 +38,17 @@ export abstract class BaseSantry {
     this.contexts = {};
   }
 
-  protected abstract captureError(error: Error): Event;
-  protected abstract captureMessage(content: string): void;
+  protected abstract captureError(error: Error): void;
+  protected abstract captureMessage(message: Message): void;
   public abstract handleUncaughtError(error: Error): void;
   public abstract handleUncaughtRejection(
     rejection: PromiseRejectionEvent,
   ): void;
 
-  public createEvent(content: Error | string, ...extraInfo: any[]): any {
+  public createEvent(
+    content: Error | Message,
+    ...extraInfo: Record<string, any>[]
+  ): any {
     // extraInfo ( 플랫폼 별로 특화된 정보 )
     const event = extraInfo.reduce((acc, info) => {
       return { ...acc, ...info };
@@ -99,8 +112,8 @@ export abstract class BaseSantry {
     this.request.post('/', event);
   }
 
-  public setContext(title: string, content: any): void {
-    this.contexts[title] = content;
+  public setContext(title: Title, context: Context): void {
+    this.contexts[title] = context;
   }
   public setLevel(level: string): void {
     if (Level.has(level)) this.level = level;

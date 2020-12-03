@@ -1,5 +1,5 @@
 import { getGlobalObject } from '@santry/utils';
-import { Options, Message, Dsn, Title, Contents } from '@santry/types';
+import { Options, Message, Dsn, Title, Context } from '@santry/types';
 import { BrowserSantry } from './browserSantry';
 import { initWithClass } from '@santry/core';
 
@@ -17,8 +17,8 @@ export const captureMessage = (message: Message): void => {
   santry.hub.captureMessage(message);
 };
 
-export const setContext = (title: Title, contents: Contents): void => {
-  santry.hub.setContext(title, contents);
+export const setContext = (title: Title, context: Context): void => {
+  santry.hub.setContext(title, context);
 };
 
 export const setLevel = (level: string): void => {
