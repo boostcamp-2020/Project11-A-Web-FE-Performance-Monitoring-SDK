@@ -4,5 +4,5 @@ export {
   captureMessage,
   setContext,
   setLevel,
-} from './init';
+} from './sdk';
 export { errorHandler } from './handlers';
