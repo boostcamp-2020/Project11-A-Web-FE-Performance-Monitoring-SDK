@@ -32,8 +32,7 @@
   "dependencies": {
     "@santry/types": "^1.1.1",
     "@santry/utils": "^1.1.1",
-    "axios": "^0.21.0",
-    "error-stack-parser": "^2.0.6"
+    "axios": "^0.21.0"
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
 }

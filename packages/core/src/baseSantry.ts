@@ -10,7 +10,7 @@ import {
   Level,
 } from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
-import { parseDsn } from '@santry/utils';
+import { parseDsn, parseErrorStack } from '@santry/utils';
 import axios, { AxiosInstance } from 'axios';
 
 export abstract class BaseSantry {
@@ -71,19 +71,7 @@ export abstract class BaseSantry {
     // Error 정보
     else {
       if (!event.level) event.level = 'error';
-      const parsedStackList = ErrorStackParser.parse(content);
-      event.type = content.name;
-      event.value = content.message;
-      if (parsedStackList) {
-        event.stacktrace = parsedStackList.map((stack) => {
-          return {
-            filename: stack.fileName,
-            function: stack.functionName,
-            lineno: stack.lineNumber,
-            colno: stack.columnNumber,
-          };
-        });
-      }
+      event.error = parseErrorStack(content);
     }
 
     // 옵션

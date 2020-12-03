@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@santry/types": "^1.1.1",
+    "error-stack-parser": "^2.0.6",
     "ua-parser-js": "^0.7.22"
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
