@@ -1,13 +1,13 @@
 import {
-  Event,
   Options,
-  Sdk,
-  Level,
-  Dsn,
-  Message,
-  Context,
   Contexts,
-  Title,
+  Platform,
+  Sdk,
+  Message,
+  ContextTitle,
+  Context,
+  Dsn,
+  Level,
 } from '@santry/types';
 import * as ErrorStackParser from 'error-stack-parser';
 import { parseDsn } from '@santry/utils';
@@ -18,7 +18,7 @@ export abstract class BaseSantry {
   private readonly request: AxiosInstance;
   private contexts: Contexts;
   private level: string;
-  protected platform: string;
+  protected platform: Platform;
   protected sdk: Sdk;
 
   public constructor(dsn: Dsn, options: Options = {}) {
@@ -48,7 +48,7 @@ export abstract class BaseSantry {
   public createEvent(
     content: Error | Message,
     ...extraInfo: Record<string, any>[]
-  ): any {
+  ): void {
     // extraInfo ( 플랫폼 별로 특화된 정보 )
     const event = extraInfo.reduce((acc, info) => {
       return { ...acc, ...info };
@@ -97,10 +97,10 @@ export abstract class BaseSantry {
       event.environment = this.options.environment;
     }
 
-    return event;
+    this.sendEvent(event);
   }
 
-  public sendEvent(event: Event): void {
+  public sendEvent(event: any): void {
     // traceSampleRate option
     if (
       this.options.traceSampleRate &&
@@ -112,7 +112,7 @@ export abstract class BaseSantry {
     this.request.post('/', event);
   }
 
-  public setContext(title: Title, context: Context): void {
+  public setContext(title: ContextTitle, context: Context): void {
     this.contexts[title] = context;
   }
   public setLevel(level: string): void {

@@ -1,5 +1,5 @@
 import { BaseSantry } from '@santry/core';
-import { Event, Options, Dsn, Message } from '@santry/types';
+import { Options, Dsn, Message } from '@santry/types';
 import packages from '../package.json';
 import { browserUserAgentInfo } from '@santry/utils';
 
@@ -10,15 +10,12 @@ export class BrowserSantry extends BaseSantry {
     this.sdk = { name: packages.name, version: packages.version };
   }
 
-  public captureError(error: Error): Event {
-    const event = this.createEvent(error, browserUserAgentInfo());
-    this.sendEvent(event);
-    return event;
+  public captureError(error: Error): void {
+    this.createEvent(error, browserUserAgentInfo());
   }
 
   public captureMessage(message: Message): void {
-    const event = this.createEvent(message, browserUserAgentInfo());
-    this.sendEvent(event);
+    this.createEvent(message, browserUserAgentInfo());
   }
 
   public handleUncaughtError(error: Error): void {

@@ -18,12 +18,7 @@ export const errorHandler = (): ((
     next: () => void,
   ) {
     const { santry } = getGlobalObject<NodeJS.Global>();
-    const event = santry.hub.createEvent(
-      error,
-      parseRequest(req),
-      expressUserAgentInfo(req),
-    );
-    santry.hub.sendEvent(event);
+    santry.hub.createEvent(error, parseRequest(req), expressUserAgentInfo(req));
     next();
   };
 };
