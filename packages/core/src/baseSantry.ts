@@ -9,7 +9,6 @@ import {
   Dsn,
   Level,
 } from '@santry/types';
-import * as ErrorStackParser from 'error-stack-parser';
 import { parseDsn, parseErrorStack } from '@santry/utils';
 import axios, { AxiosInstance } from 'axios';
 
@@ -57,7 +56,6 @@ export abstract class BaseSantry {
     event.contexts = this.contexts;
     event.level = this.level;
     // 공통 정보 1
-    event.runtime = process.version;
     event.timeStamp = new Date();
     event.platform = this.platform;
     event.sdk = this.sdk;
