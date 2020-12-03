@@ -5,7 +5,7 @@
   "author": "eunbinn <qpmz1212@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "ISC",
-  "main": "dist/src/index.js",
+  "main": "dist/src/index",
   "directories": {
     "src": "dist",
     "test": "__tests__"
