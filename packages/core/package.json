@@ -11,7 +11,8 @@
     "test": "__tests__"
   },
   "files": [
-    "dist"
+    "dist/src/*.js",
+    "dist/package.json"
   ],
   "publishConfig": {
     "access": "public",
@@ -34,5 +35,5 @@
     "@santry/utils": "^1.1.2",
     "axios": "^0.21.0"
   },
-  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
+  "gitHead": "02bee58924cef4de864fb286874d2c6719bba07b"
 }
