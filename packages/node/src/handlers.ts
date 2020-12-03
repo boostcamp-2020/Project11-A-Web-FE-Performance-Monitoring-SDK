@@ -2,7 +2,7 @@ import * as http from 'http';
 import {
   parseRequest,
   getGlobalObject,
-  expressUserAgentInfo,
+  parseUserAgentInfo,
 } from '@santry/utils';
 
 export const errorHandler = (): ((
@@ -18,7 +18,11 @@ export const errorHandler = (): ((
     next: () => void,
   ) {
     const { santry } = getGlobalObject<NodeJS.Global>();
-    santry.hub.createEvent(error, parseRequest(req), expressUserAgentInfo(req));
+    santry.hub.createEvent(
+      error,
+      parseRequest(req),
+      parseUserAgentInfo(req.headers['user-agent']),
+    );
     next();
   };
 };

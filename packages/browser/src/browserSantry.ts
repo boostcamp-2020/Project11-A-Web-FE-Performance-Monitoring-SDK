@@ -1,7 +1,7 @@
 import { BaseSantry } from '@santry/core';
 import { Options, Dsn, Message } from '@santry/types';
 import packages from '../package.json';
-import { browserUserAgentInfo } from '@santry/utils';
+import { parseUserAgentInfo } from '@santry/utils';
 
 export class BrowserSantry extends BaseSantry {
   public constructor(dsn: Dsn, options: Options) {
@@ -11,11 +11,11 @@ export class BrowserSantry extends BaseSantry {
   }
 
   public captureError(error: Error): void {
-    this.createEvent(error, browserUserAgentInfo());
+    this.createEvent(error, parseUserAgentInfo(window.navigator.userAgent));
   }
 
   public captureMessage(message: Message): void {
-    this.createEvent(message, browserUserAgentInfo());
+    this.createEvent(message, parseUserAgentInfo(window.navigator.userAgent));
   }
 
   public handleUncaughtError(error: Error): void {
