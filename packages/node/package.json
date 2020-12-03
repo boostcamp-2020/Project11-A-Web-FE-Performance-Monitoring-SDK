@@ -11,8 +11,7 @@
     "test": "__tests__"
   },
   "files": [
-    "dist/src/*.js",
-    "dist/package.json"
+    "dist/**/*"
   ],
   "publishConfig": {
     "access": "public",
