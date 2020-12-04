@@ -9,7 +9,7 @@ export const parseRequest: any = (req: any): Event => {
   if (req.ip) {
     event.createdBy = {
       ...event.createdBy,
-      ipAdress: req.ip,
+      ipAddress: req.ip,
     };
   }
 
