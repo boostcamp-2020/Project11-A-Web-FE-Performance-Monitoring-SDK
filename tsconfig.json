@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "baseUrl": "packages",
+    "types":["node"],
+    "resolveJsonModule":true,
+  },
+  "exclude": [
+    "*.config.js", 
+    "packages/**/node_modules/*.d.ts",
+    "node_modules/*.d.ts",
+    "**/dist/**/*"
+  ]
+}
+

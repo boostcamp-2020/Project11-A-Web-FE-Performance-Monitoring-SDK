@@ -1,0 +1,11 @@
+node_modules/
+tests/
+package-lock.json
+.eslintrc.json
+.prettierrc.json
+nodemon.json
+tsconfig.json
+.github/
+coverage/
+src/
+.env
