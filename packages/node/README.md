@@ -67,24 +67,34 @@ Use errorHandler function as middleware.
 ```jsx
 // All controllers should live here
 const express = require('express');
-const { init, errorHandler } = require('@santry/node');
+const {
+  init,
+  errorHandler,
+  captureMessage,
+  setContext,
+  setLevel,
+} = require('@santry/node');
 
 const app = express();
-const dsn = '[token]@[url]';
+const dsn = '[dsn]@[url]';
 
-init(dsn);
+init(dsn, {
+  traceSampleRate: 1,
+  release: 'santry@0.0.1',
+  environment: 'production',
+});
 
 app.get('/', function rootHandler(req, res) {
   res.end('Hello world!');
 });
 
-app.get('/debug-sentry', function mainHandler(req, res) {
-  console.log(req);
-  throw new Error('My second Sentry error get!');
-});
-
 app.post('/debug-sentry', function mainHandler(req, res) {
-  console.log(req);
+  setContext('myInfo', {
+    name: 'Hera',
+    age: 26,
+  });
+  setLevel('fatal');
+  captureMessage("helllo I'm Hera");
   throw new Error('My second Sentry error get!');
 });
 // The error handler must be before any other error middleware and after all controllers
@@ -96,11 +106,24 @@ app.use(function onError(err, req, res, next) {
 });
 
 app.listen(3000);
+
 ```
 
 ### init([dsn],[options])
 
 If you want to use functions, use it first.
+
+### setLevel([level])
+
+Set level of error of message 
+
+### setContext([context])
+
+Set context of error or mesaage
+
+### errorHandler()
+
+Get error 
 
 ### options
 

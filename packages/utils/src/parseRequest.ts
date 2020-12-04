@@ -3,14 +3,13 @@ import os from 'os';
 
 export const parseRequest: any = (req: any): Event => {
   const event: any = {};
-  event.version = process.version;
-  event.platform = process.platform;
+  event.runtime = process.version;
   event.serverName = os.hostname();
   event.transaction = `${req.method} ${req.url}`;
   if (req.ip) {
     event.createdBy = {
       ...event.createdBy,
-      ipAdress: req.ip,
+      ipAddress: req.ip,
     };
   }
 

@@ -4,4 +4,4 @@ export {
   captureMessage,
   setContext,
   setLevel,
-} from './init';
+} from './sdk';
