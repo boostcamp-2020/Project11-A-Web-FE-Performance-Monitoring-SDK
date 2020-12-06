@@ -8,7 +8,6 @@ export const parseRequest: any = (req: any): Event => {
   event.transaction = `${req.method} ${req.url}`;
   if (req.ip) {
     event.createdBy = {
-      ...event.createdBy,
       ipAddress: req.ip,
     };
   }
