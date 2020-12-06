@@ -8,5 +8,5 @@ tsconfig.json
 .github/
 coverage/
 packages/*/src/
-packages/*/__tests/
+packages/*/__test__/
 .env
