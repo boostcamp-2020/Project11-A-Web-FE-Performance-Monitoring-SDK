@@ -3,4 +3,4 @@ export * from './parseDsn';
 export * from './parseUserAgentInfo';
 export * from './parseRequest';
 export * from './parseErrorStack';
-export * from './getNodeEtcInfo';
+export * from './getEtcInfo';
