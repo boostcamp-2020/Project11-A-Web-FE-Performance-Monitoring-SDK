@@ -7,5 +7,6 @@ nodemon.json
 tsconfig.json
 .github/
 coverage/
-src/
+packages/*/src/
+packages/*/__tests/
 .env
