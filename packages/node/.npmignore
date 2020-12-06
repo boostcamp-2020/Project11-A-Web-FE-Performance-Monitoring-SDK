@@ -1,5 +1,2 @@
-src
-__tests__
-.npmignore
-package-lock.json
-tsconfig.json
+**
+!dist/**/*
