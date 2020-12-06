@@ -4,7 +4,6 @@ node_modules/
 
 ### dist 
 packages/*/dist/
-dist/
 package-lock.json
 ### .env 파일 
 .env

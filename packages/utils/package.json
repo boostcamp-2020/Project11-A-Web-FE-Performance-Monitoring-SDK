@@ -7,13 +7,6 @@
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
-  "directories": {
-    "src": "dist",
-    "test": "__tests__"
-  },
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com/"
