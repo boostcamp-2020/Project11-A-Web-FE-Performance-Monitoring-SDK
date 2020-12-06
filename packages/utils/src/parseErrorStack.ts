@@ -1,14 +1,25 @@
+import {
+  ErrorType,
+  ErrorValue,
+  ErrorContexts,
+  StackTrace,
+} from '@santry/types';
 import fs from 'fs';
 import { parse } from 'error-stack-parser';
 
 export const parseErrorStack = (error: Error): any => {
-  const event: any = {};
+  const event: {
+    type?: ErrorType;
+    value?: ErrorValue;
+    errorContexts?: ErrorContexts;
+    stackTrace?: StackTrace[];
+  } = {};
   const parsedStackList = parse(error);
   event.type = error.name;
   event.value = error.message;
-  const newStack: string[][] = [];
+  const newStack = [];
   if (parsedStackList) {
-    event.stacktrace = parsedStackList.map((stack) => {
+    event.stackTrace = parsedStackList.map((stack) => {
       try {
         String(stack).replace(/(\\r\\n|\\n|\\r)/gm, '\\n');
         const LinesArray: string[] = [];

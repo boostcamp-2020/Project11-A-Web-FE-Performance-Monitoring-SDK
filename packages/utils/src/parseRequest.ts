@@ -1,7 +1,7 @@
 import { Event } from '@santry/types';
 
-export const parseRequest: any = (req: any): Event => {
-  const event: any = {};
+export const parseRequest = (req: any): Event => {
+  const event: Event = {};
   event.transaction = `${req.method} ${req.url}`;
   if (req.ip) {
     event.createdBy = {
