@@ -35,14 +35,14 @@ export abstract class BaseSantry {
     });
     this.options = options;
     this.contexts = {};
+    this.onUncaughtException();
+    this.onUnhandledRejection();
   }
 
   protected abstract captureError(error: Error): void;
   protected abstract captureMessage(message: Message): void;
-  public abstract handleUncaughtError(error: Error): void;
-  public abstract handleUncaughtRejection(
-    rejection: PromiseRejectionEvent,
-  ): void;
+  public abstract onUncaughtException(): void;
+  public abstract onUnhandledRejection(): void;
 
   public createEvent(
     content: Error | Message,
