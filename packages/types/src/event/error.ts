@@ -7,3 +7,4 @@ export interface StackTrace {
 
 export type ErrorType = string;
 export type ErrorValue = string;
+export type ErrorContexts = string[];

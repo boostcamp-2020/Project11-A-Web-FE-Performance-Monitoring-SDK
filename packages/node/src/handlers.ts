@@ -3,6 +3,7 @@ import {
   parseRequest,
   getGlobalObject,
   parseUserAgentInfo,
+  getNodeEtcInfo,
 } from '@santry/utils';
 
 export const errorHandler = (): ((
@@ -20,6 +21,7 @@ export const errorHandler = (): ((
     const { santry } = getGlobalObject<NodeJS.Global>();
     santry.hub.createEvent(
       error,
+      getNodeEtcInfo(),
       parseRequest(req),
       parseUserAgentInfo(req.headers['user-agent']),
     );

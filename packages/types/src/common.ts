@@ -7,7 +7,7 @@ export interface Santry {
   handleUncaughtRejection(rejection: PromiseRejectionEvent): void;
   captureError(error: Error): void;
   captureMessage(message: event.Message): void;
-  sendEvent(event: Event): void;
+  sendEvent(event: event.Event): void;
   createEvent(
     content: Error | string,
     ...extraInfo: Record<string, any>[]

@@ -1,14 +1,10 @@
 import { Event } from '@santry/types';
-import os from 'os';
 
-export const parseRequest: any = (req: any): Event => {
-  const event: any = {};
-  event.runtime = process.version;
-  event.serverName = os.hostname();
+export const parseRequest = (req: any): Event => {
+  const event: Event = {};
   event.transaction = `${req.method} ${req.url}`;
   if (req.ip) {
     event.createdBy = {
-      ...event.createdBy,
       ipAddress: req.ip,
     };
   }
