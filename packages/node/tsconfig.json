@@ -3,8 +3,6 @@
     "compilerOptions": {
         "baseUrl": ".",
         "outDir": "dist",
-        "allowJs": true,
-        "declaration": true,
     },
     "include": ["src/**/*"],
 }
