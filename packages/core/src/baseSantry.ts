@@ -10,7 +10,7 @@ import {
   Level,
 } from '@santry/types';
 import { parseDsn, parseErrorStack } from '@santry/utils';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export abstract class BaseSantry {
   private readonly options?: Options;
@@ -85,16 +85,22 @@ export abstract class BaseSantry {
     this.sendEvent(event);
   }
 
-  public sendEvent(event: any): void {
-    // traceSampleRate option
-    if (
-      this.options.traceSampleRate &&
-      Math.random() > this.options.traceSampleRate
-    ) {
+  public async sendEvent(event: any): Promise<AxiosResponse | undefined> {
+    try {
+      // traceSampleRate option
+      if (
+        this.options.traceSampleRate &&
+        Math.random() > this.options.traceSampleRate
+      ) {
+        return;
+      }
+      console.log(event);
+      const response = await this.request.post('/', event);
+      return response;
+    } catch (error) {
+      console.log(error);
       return;
     }
-    console.log(event);
-    this.request.post('/', event);
   }
 
   public setContext(title: ContextTitle, context: Context): void {
@@ -102,5 +108,9 @@ export abstract class BaseSantry {
   }
   public setLevel(level: string): void {
     if (Level.has(level)) this.level = level;
+  }
+
+  public getOptions(): Options {
+    return this.options;
   }
 }
