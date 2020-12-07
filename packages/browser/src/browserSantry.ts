@@ -24,7 +24,7 @@ export class BrowserSantry extends BaseSantry {
     };
   }
 
-  public onUncaughtRejection(): void {
+  public onUnhandledRejection(): void {
     window.onunhandledrejection = (event) => {
       this.createEvent(event.reason);
     };
