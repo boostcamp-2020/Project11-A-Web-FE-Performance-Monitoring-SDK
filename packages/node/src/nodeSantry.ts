@@ -25,14 +25,9 @@ export class NodeSantry extends BaseSantry {
   }
 
   public onUnhandledRejection(): void {
-    process.on(
-      'unhandledRejection',
-      (reason: Error | any, promise: Promise<any>) => {
-        if (typeof reason === Error) {
-          this.createEvent(reason);
-        }
-      },
-    );
+    process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
+      this.createEvent(reason);
+    });
     return;
   }
 }
