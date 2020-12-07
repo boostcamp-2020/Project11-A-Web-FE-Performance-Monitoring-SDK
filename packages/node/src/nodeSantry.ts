@@ -17,11 +17,22 @@ export class NodeSantry extends BaseSantry {
     this.createEvent(message);
   }
 
-  public handleUncaughtError(error: Error): void {
+  public onUncaughtException(): void {
+    process.on('uncaughtException', (error: Error) => {
+      this.createEvent(error);
+    });
     return;
   }
 
-  public handleUncaughtRejection(rejection: PromiseRejectionEvent): void {
+  public onUnhandledRejection(): void {
+    process.on(
+      'unhandledRejection',
+      (reason: Error | any, promise: Promise<any>) => {
+        if (typeof reason === Error) {
+          this.createEvent(reason);
+        }
+      },
+    );
     return;
   }
 }
