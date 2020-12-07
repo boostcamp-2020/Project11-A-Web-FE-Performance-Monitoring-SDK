@@ -18,11 +18,16 @@ export class BrowserSantry extends BaseSantry {
     this.createEvent(message, parseUserAgentInfo(window.navigator.userAgent));
   }
 
-  public handleUncaughtError(error: Error): void {
-    return;
+  public onUncaughtException(): void {
+    window.onerror = (message, source, lineno, number, error) => {
+      this.createEvent(error);
+    };
   }
 
-  public handleUncaughtRejection(rejection: PromiseRejectionEvent): void {
+  public onUncaughtRejection(): void {
+    window.onunhandledrejection = (event) => {
+      this.createEvent(event.reason);
+    };
     return;
   }
 }
