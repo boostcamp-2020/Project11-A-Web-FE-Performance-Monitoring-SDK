@@ -8,6 +8,7 @@ import {
   Context,
   Dsn,
   Level,
+  Event,
 } from '@santry/types';
 import { parseDsn, parseErrorStack } from '@santry/utils';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
@@ -49,7 +50,7 @@ export abstract class BaseSantry {
     ...extraInfo: Record<string, any>[]
   ): void {
     // extraInfo ( 플랫폼 별로 특화된 정보 )
-    const event = extraInfo.reduce((acc, info) => {
+    const event: Event = extraInfo.reduce((acc, info) => {
       return { ...acc, ...info };
     }, {});
 
@@ -84,7 +85,7 @@ export abstract class BaseSantry {
 
     this.sendEvent(event);
   }
-
+  
   public async sendEvent(event: any): Promise<number | undefined> {
     try {
       // traceSampleRate option

@@ -1,3 +1,4 @@
+import { getNodeEtcInfo } from '@santry/utils';
 import { BaseSantry } from '@santry/core';
 import { Dsn, Message, Options } from '@santry/types';
 import packages from '../package.json';
@@ -10,11 +11,11 @@ export class NodeSantry extends BaseSantry {
   }
 
   public captureError(error: Error): void {
-    this.createEvent(error);
+    this.createEvent(error, getNodeEtcInfo());
   }
 
   public captureMessage(message: Message): void {
-    this.createEvent(message);
+    this.createEvent(message, getNodeEtcInfo());
   }
 
   public onUncaughtException(): void {
