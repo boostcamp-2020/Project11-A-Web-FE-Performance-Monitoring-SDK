@@ -18,11 +18,26 @@ export class BrowserSantry extends BaseSantry {
     this.createEvent(message, parseUserAgentInfo(window.navigator.userAgent));
   }
 
-  public handleUncaughtError(error: Error): void {
-    return;
+  public onUncaughtException(): void {
+    window.onerror = (message, source, lineno, number, error) => {
+      const options = this.getOptions();
+      const level = options.uncaughtExceptionLevel
+        ? options.uncaughtExceptionLevel
+        : 'error';
+      this.setLevel(level);
+      this.createEvent(error);
+    };
   }
 
-  public handleUncaughtRejection(rejection: PromiseRejectionEvent): void {
+  public onUnhandledRejection(): void {
+    window.onunhandledrejection = (event) => {
+      const options = this.getOptions();
+      const level = options.unhandledRejectionLevel
+        ? options.unhandledRejectionLevel
+        : 'error';
+      this.setLevel(level);
+      this.createEvent(event.reason);
+    };
     return;
   }
 }

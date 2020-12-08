@@ -18,11 +18,26 @@ export class NodeSantry extends BaseSantry {
     this.createEvent(message, getNodeEtcInfo());
   }
 
-  public handleUncaughtError(error: Error): void {
+  public onUncaughtException(): void {
+    process.on('uncaughtException', (error: Error) => {
+      const options = this.getOptions();
+      const level = options.uncaughtExceptionLevel
+        ? options.uncaughtExceptionLevel
+        : 'error';
+      this.setLevel(level);
+      this.createEvent(error);
+    });
     return;
   }
-
-  public handleUncaughtRejection(rejection: PromiseRejectionEvent): void {
+  public onUnhandledRejection(): void {
+    process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
+      const options = this.getOptions();
+      const level = options.unhandledRejectionLevel
+        ? options.unhandledRejectionLevel
+        : 'error';
+      this.setLevel(level);
+      this.createEvent(reason);
+    });
     return;
   }
 }

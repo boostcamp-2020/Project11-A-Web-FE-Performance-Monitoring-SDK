@@ -11,7 +11,7 @@ import {
   Event,
 } from '@santry/types';
 import { parseDsn, parseErrorStack } from '@santry/utils';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export abstract class BaseSantry {
   private readonly options?: Options;
@@ -36,14 +36,14 @@ export abstract class BaseSantry {
     });
     this.options = options;
     this.contexts = {};
+    this.onUncaughtException();
+    this.onUnhandledRejection();
   }
 
   protected abstract captureError(error: Error): void;
   protected abstract captureMessage(message: Message): void;
-  public abstract handleUncaughtError(error: Error): void;
-  public abstract handleUncaughtRejection(
-    rejection: PromiseRejectionEvent,
-  ): void;
+  public abstract onUncaughtException(): void;
+  public abstract onUnhandledRejection(): void;
 
   public createEvent(
     content: Error | Message,
@@ -85,17 +85,23 @@ export abstract class BaseSantry {
 
     this.sendEvent(event);
   }
-
-  public sendEvent(event: Event): void {
-    // traceSampleRate option
-    if (
-      this.options.traceSampleRate &&
-      Math.random() > this.options.traceSampleRate
-    ) {
+  
+  public async sendEvent(event: any): Promise<number | undefined> {
+    try {
+      // traceSampleRate option
+      if (
+        this.options.traceSampleRate &&
+        Math.random() > this.options.traceSampleRate
+      ) {
+        return;
+      }
+      console.log(event);
+      const response = await this.request.post('/', event);
+      return response.status;
+    } catch (error) {
+      console.error(error);
       return;
     }
-    console.log(event);
-    this.request.post('/', event);
   }
 
   public setContext(title: ContextTitle, context: Context): void {
@@ -103,5 +109,9 @@ export abstract class BaseSantry {
   }
   public setLevel(level: string): void {
     if (Level.has(level)) this.level = level;
+  }
+
+  public getOptions(): Options {
+    return this.options;
   }
 }
