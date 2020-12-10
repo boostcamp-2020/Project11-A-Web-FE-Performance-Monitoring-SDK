@@ -68,6 +68,7 @@ export const parseErrorStack = (error: Error): any => {
         };
       }
     });
+    console.log('a');
   }
   event.errorContexts = newErrorContexts;
   return event;
