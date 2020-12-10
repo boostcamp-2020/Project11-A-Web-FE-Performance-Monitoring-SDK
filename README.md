@@ -151,6 +151,8 @@ app.listen(3000);
     
 ```
 
+---
+
 ### Set Level
 
 **If you want to set level in message or error. Try using setLevel Function!**
@@ -168,6 +170,8 @@ const testError = () => {
   }
 };
 ```
+
+---
 
 ### Set Context
 
