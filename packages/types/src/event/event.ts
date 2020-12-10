@@ -14,7 +14,7 @@ export interface Event {
     type?: error.ErrorType;
     value?: error.ErrorValue;
     stacktrace?: error.StackTrace[];
-    errorContexts?: error.ErrorContexts;
+    errorContexts?: error.ErrorContexts[];
   };
   transaction?: string;
   message?: message.Message;
