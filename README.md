@@ -9,11 +9,10 @@
 	<br>
 
 <!--레포 정보-->
-![](https://img.shields.io/github/commit-activity/w/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
-![](https://img.shields.io/github/repo-size/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
-![](https://img.shields.io/github/languages/code-size/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
-![](https://img.shields.io/github/issues/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
-![](https://img.shields.io/github/last-commit/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
+![](https://img.shields.io/github/repo-size/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-Admin)
+![](https://img.shields.io/github/languages/code-size/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-Admin)
+![](https://img.shields.io/github/issues/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-Admin)
+![](https://img.shields.io/github/last-commit/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-Admin)
 
 ![](https://i.imgur.com/j94i246.png)
 
@@ -36,9 +35,9 @@
 ---
 
 # Members
-|J005|J049|J050|J071|
-|----|----|----|----|
-|[강석민](https://github.com/kangsukmin)|[김원호](https://github.com/gitdog01)|[김은빈](https://github.com/Eunbin-Kim)|[문혜라](https://github.com/maong0927)|
+|[![](https://github.com/kangsukmin.png)](https://github.com/kangsukmin)|[![](https://github.com/gitdog01.png)](https://github.com/gitdog01)|[![](https://github.com/Eunbin-Kim.png)](https://github.com/Eunbin-Kim)|[![](https://github.com/maong0927.png)](https://github.com/maong0927)|
+:---:|:---:|:---:|:---:
+|[J005 강석민](https://github.com/kangsukmin)|[J049 김원호](https://github.com/gitdog01)|[J050 김은빈](https://github.com/Eunbin-Kim)|[J071 문혜라](https://github.com/maong0927)|
 
 ### 저장소 주소
 [FrontEnd Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-admin)<br>
@@ -51,15 +50,20 @@
 &nbsp;**Santry** 는 오류를 수집하는 SDK를 NPM을 통해서 배포하여, 발생하는 오류들을 모아서 서버에 저장하고, 그에 대한 상황과 통계를 알려주는 Admin 페이지를 제공합니다. 
 &nbsp;여러분에 Application에서 발생하는 오류들을 찾는 데 도움을 드려 더욱 행복한 개발환경에서 개발하셨으면 좋겠습니다.
  
-
-&nbsp;[함께 시작해볼까요 ?](https://www.npmjs.com/package/@santry/browser)
+## 함께 시작해볼까요?
+- [브라우저 버전](https://www.npmjs.com/package/@santry/browser)
 ```
 $ npm install @santry/browser
 ```
+- [노드 버전](https://www.npmjs.com/package/@santry/browser) 
+```
+$ npm install @santry/node
+```
+
 ## 제공하는 기능
 
 - 다양한 종류의 ErrorCatch을 위한 도구 제공
-```javascript=
+```jsx
 // 기본적인 에러 Catch 부터
   try {
     throw new Error('testing Error');
@@ -90,6 +94,3 @@ $ npm install @santry/browser
 
 - 이슈 관리에서는 하나의 오류 정보부터, Tag의 통계, 이슈에 대해 커뮤니케이션을 할 수 있는 comment 기능등을 지원합니다.
  
- 
- 
-
