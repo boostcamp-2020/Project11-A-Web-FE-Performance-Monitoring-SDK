@@ -23,6 +23,7 @@ export const setContext = (title: ContextTitle, context: Context): void => {
 };
 
 export const setLevel = (level: string): void => {
+  console.log(level);
   const { santry } = getGlobalObject<NodeJS.Global>();
   santry.hub.setLevel(level);
 };
