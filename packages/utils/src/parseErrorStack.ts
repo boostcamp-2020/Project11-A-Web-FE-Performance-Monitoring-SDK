@@ -12,14 +12,14 @@ export const parseErrorStack = (error: Error): any => {
     type?: ErrorType;
     value?: ErrorValue;
     errorContexts?: ErrorContexts[];
-    stackTrace?: StackTrace[];
+    stacktrace?: StackTrace[];
   } = {};
   const parsedStackList = parse(error);
   event.type = error.name;
   event.value = error.message;
   const newErrorContexts: ErrorContexts[] = [];
   if (parsedStackList) {
-    event.stackTrace = parsedStackList.map((stack) => {
+    event.stacktrace = parsedStackList.map((stack) => {
       try {
         const newStack: ErrorContexts = {
           preErrorContext: [],
@@ -36,7 +36,6 @@ export const parseErrorStack = (error: Error): any => {
             : stack.lineNumber + 4;
         let i: number;
         for (i = startLine; i < endLine; i++) {
-          console.log(i + ' :' + file[i]);
           if (i === middleLine) {
             newStack.errorContext.push(file[i]);
           }
