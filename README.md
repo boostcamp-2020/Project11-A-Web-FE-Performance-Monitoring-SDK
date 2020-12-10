@@ -34,11 +34,6 @@
 
 ---
 
-# Members
-|[![](https://github.com/kangsukmin.png)](https://github.com/kangsukmin)|[![](https://github.com/gitdog01.png)](https://github.com/gitdog01)|[![](https://github.com/Eunbin-Kim.png)](https://github.com/Eunbin-Kim)|[![](https://github.com/maong0927.png)](https://github.com/maong0927)|
-:---:|:---:|:---:|:---:
-|[J005 강석민](https://github.com/kangsukmin)|[J049 김원호](https://github.com/gitdog01)|[J050 김은빈](https://github.com/Eunbin-Kim)|[J071 문혜라](https://github.com/maong0927)|
-
 ### 저장소 주소
 [FrontEnd Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-admin)<br>
 [BackEnd Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-server)<br>
