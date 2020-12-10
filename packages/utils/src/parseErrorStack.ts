@@ -17,23 +17,34 @@ export const parseErrorStack = (error: Error): any => {
   const parsedStackList = parse(error);
   event.type = error.name;
   event.value = error.message;
-  const newStack = [];
+  const newStack: ErrorContexts = {
+    preErrorContext: [],
+    errorContext: [],
+    postErrorContext: [],
+  };
   if (parsedStackList) {
     event.stackTrace = parsedStackList.map((stack) => {
       try {
         String(stack).replace(/(\\r\\n|\\n|\\r)/gm, '\\n');
-        const LinesArray: string[] = [];
         const file = fs.readFileSync(stack.fileName).toString().split('\n');
-        const startline = stack.lineNumber < 3 ? 1 : stack.lineNumber - 2;
-        const endline =
-          stack.lineNumber + 2 > file.length
+        const startLine = stack.lineNumber < 6 ? 1 : stack.lineNumber - 5;
+        const middleLine = stack.lineNumber;
+        const endLine =
+          stack.lineNumber + 5 > file.length
             ? file.length
-            : stack.lineNumber + 2;
+            : stack.lineNumber + 5;
         let i: number;
-        for (i = startline; i < endline + 1; i++) {
-          LinesArray.push(file[i - 1]);
+        for (i = startLine; i < endLine + 1; i++) {
+          if (i === middleLine) {
+            newStack.errorContext.push(file[i]);
+            continue;
+          }
+          if (i < middleLine) {
+            newStack.preErrorContext.push(file[i]);
+          } else {
+            newStack.postErrorContext.push(file[i]);
+          }
         }
-        newStack.push(LinesArray);
         return {
           filename: stack.fileName,
           function: stack.functionName,
@@ -41,7 +52,6 @@ export const parseErrorStack = (error: Error): any => {
           colno: stack.columnNumber,
         };
       } catch {
-        newStack.push([]);
         return {
           filename: stack.fileName,
           function: stack.functionName,
