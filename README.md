@@ -45,22 +45,13 @@
 - [SDK Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK)
 - [통합 위키](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/wiki)
 
-## Members
-
-|<img src="https://github.com/kangsukmin.png" width=100 >|<img src="https://github.com/gitdog01.png" width=100 >|<img src="https://github.com/Eunbin-Kim.png" width=100 >|<img src="https://github.com/maong0927.png" width=100 >|
-:---:|:---:|:---:|:---:
-|[J005 강석민](https://github.com/kangsukmin)|[J049 김원호](https://github.com/gitdog01)|[J050 김은빈](https://github.com/Eunbin-Kim)|[J071 문혜라](https://github.com/maong0927)|
-
 ## Highlights
 
 - [프로젝트 개요](#프로젝트-개요)
+- [멤버](#Members)
 - [Install](#Install)
 - [Usage](#Get-Started)
-- [멤버](#멤버)
 - [개발환경](#개발환경)
-
-
-
 
 ## 프로젝트 개요
 
@@ -75,6 +66,13 @@
 
 - **Santry** 는 오류를 수집하는 SDK를 NPM을 통해서 배포하여, 발생하는 오류들을 모아서 서버에 저장하고, 그에 대한 상황과 통계를 알려주는 Admin 페이지를 제공합니다. 
 - 여러분에 Application에서 발생하는 오류들을 찾는 데 도움을 드려 더욱 행복한 개발환경에서 개발하셨으면 좋겠습니다.
+
+## Members
+
+|<img src="https://github.com/kangsukmin.png" width=100 >|<img src="https://github.com/gitdog01.png" width=100 >|<img src="https://github.com/Eunbin-Kim.png" width=100 >|<img src="https://github.com/maong0927.png" width=100 >|
+:---:|:---:|:---:|:---:
+|[J005 강석민](https://github.com/kangsukmin)|[J049 김원호](https://github.com/gitdog01)|[J050 김은빈](https://github.com/Eunbin-Kim)|[J071 문혜라](https://github.com/maong0927)|
+
 
 ## Install
 
@@ -151,8 +149,6 @@ app.listen(3000);
     
 ```
 
----
-
 ### Set Level
 
 **If you want to set level in message or error. Try using setLevel Function!**
@@ -170,8 +166,6 @@ const testError = () => {
   }
 };
 ```
-
----
 
 ### Set Context
 
@@ -213,4 +207,3 @@ const testError = () => {
     - React & Redux
     - Babel, Tsc, Webpack 직접 설정
     - Recharts를 통한 차트 구성
-
