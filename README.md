@@ -39,6 +39,10 @@
 
 ---
 
+## 배포 주소
+- [Homepage](http://santry.tk/)
+- [Backend Swagger](http://boostcamp.santry.kro.kr:3000/docs/)
+
 ## Repository
 - [FrontEnd Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-admin)
 - [BackEnd Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-server)
