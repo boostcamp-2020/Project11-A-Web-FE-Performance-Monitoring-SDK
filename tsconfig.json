@@ -2,8 +2,12 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "dist",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "types":["node"],
+    "declaration": true,
+    "resolveJsonModule":true,
   },
-  "include": ["src/*.ts", "src/*.js"]
 }
+
