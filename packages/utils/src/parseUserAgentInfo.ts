@@ -1,7 +1,8 @@
 import { UAParser } from 'ua-parser-js';
+import { Event } from '@santry/types';
 
 export const parseUserAgentInfo = (userAgent: string): Event => {
-  const event: any = {};
+  const event: Event = {};
   const uaParser = new UAParser();
   const parsedUserAgent = uaParser.setUA(userAgent);
 

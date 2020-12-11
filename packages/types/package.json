@@ -1,18 +1,11 @@
 {
   "name": "@santry/types",
-  "version": "1.2.0",
+  "version": "1.2.4",
   "description": "> TODO: description",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "MIT",
   "main": "dist/index",
-  "directories": {
-    "src": "dist",
-    "test": "__tests__"
-  },
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com/"

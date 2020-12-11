@@ -3,11 +3,11 @@ import * as event from './event';
 export type Dsn = string;
 
 export interface Santry {
-  handleUncaughtError(error: Error): void;
-  handleUncaughtRejection(rejection: PromiseRejectionEvent): void;
+  onUncaughtException(error: Error): void;
+  onUnhandledRejection(rejection: PromiseRejectionEvent): void;
   captureError(error: Error): void;
   captureMessage(message: event.Message): void;
-  sendEvent(event: Event): void;
+  sendEvent(event: event.Event): void;
   createEvent(
     content: Error | string,
     ...extraInfo: Record<string, any>[]

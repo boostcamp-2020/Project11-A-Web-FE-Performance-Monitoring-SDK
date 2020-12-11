@@ -1,28 +1,52 @@
+import {
+  ErrorType,
+  ErrorValue,
+  ErrorContexts,
+  StackTrace,
+} from '@santry/types';
 import fs from 'fs';
 import { parse } from 'error-stack-parser';
 
 export const parseErrorStack = (error: Error): any => {
-  const event: any = {};
+  const event: {
+    type?: ErrorType;
+    value?: ErrorValue;
+    errorContexts?: ErrorContexts[];
+    stacktrace?: StackTrace[];
+  } = {};
   const parsedStackList = parse(error);
   event.type = error.name;
   event.value = error.message;
-  const newStack: string[][] = [];
+  const newErrorContexts: ErrorContexts[] = [];
   if (parsedStackList) {
     event.stacktrace = parsedStackList.map((stack) => {
       try {
+        const newStack: ErrorContexts = {
+          preErrorContext: [],
+          errorContext: [],
+          postErrorContext: [],
+        };
         String(stack).replace(/(\\r\\n|\\n|\\r)/gm, '\\n');
-        const LinesArray: string[] = [];
         const file = fs.readFileSync(stack.fileName).toString().split('\n');
-        const startline = stack.lineNumber < 3 ? 1 : stack.lineNumber - 2;
-        const endline =
-          stack.lineNumber + 2 > file.length
+        const startLine = stack.lineNumber < 5 ? 1 : stack.lineNumber - 6;
+        const middleLine = stack.lineNumber - 1;
+        const endLine =
+          stack.lineNumber + 5 > file.length
             ? file.length
-            : stack.lineNumber + 2;
+            : stack.lineNumber + 4;
         let i: number;
-        for (i = startline; i < endline + 1; i++) {
-          LinesArray.push(file[i - 1]);
+        for (i = startLine; i < endLine; i++) {
+          if (i === middleLine) {
+            newStack.errorContext.push(file[i]);
+          }
+          if (i < middleLine) {
+            newStack.preErrorContext.push(file[i]);
+          }
+          if (i > middleLine) {
+            newStack.postErrorContext.push(file[i]);
+          }
         }
-        newStack.push(LinesArray);
+        newErrorContexts.push(newStack);
         return {
           filename: stack.fileName,
           function: stack.functionName,
@@ -30,7 +54,11 @@ export const parseErrorStack = (error: Error): any => {
           colno: stack.columnNumber,
         };
       } catch {
-        newStack.push([]);
+        newErrorContexts.push({
+          preErrorContext: [],
+          errorContext: [],
+          postErrorContext: [],
+        });
         return {
           filename: stack.fileName,
           function: stack.functionName,
@@ -40,6 +68,6 @@ export const parseErrorStack = (error: Error): any => {
       }
     });
   }
-  event.errorContexts = newStack;
+  event.errorContexts = newErrorContexts;
   return event;
 };
