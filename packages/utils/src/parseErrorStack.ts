@@ -19,6 +19,7 @@ export const parseErrorStack = (error: Error): any => {
   event.value = error.message;
   const newErrorContexts: ErrorContexts[] = [];
   if (parsedStackList) {
+    //fixed
     event.stacktrace = parsedStackList.map((stack) => {
       try {
         const newStack: ErrorContexts = {
