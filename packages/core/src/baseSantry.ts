@@ -85,7 +85,7 @@ export abstract class BaseSantry {
 
     this.sendEvent(event);
   }
-  
+
   public async sendEvent(event: any): Promise<number | undefined> {
     try {
       // traceSampleRate option
@@ -95,7 +95,7 @@ export abstract class BaseSantry {
       ) {
         return;
       }
-      console.log(event);
+      // console.log(event);
       const response = await this.request.post('/', event);
       return response.status;
     } catch (error) {
