@@ -64,7 +64,7 @@
 - 기존에 프로젝트를 운영하면서 에러와 기록을 로그파일로 저장합니다.
 - 로그 자체를 CLI로 관리할 경우 가독성이 떨어지며 에러레벨을 구분하기 힘듭니다.
 
-|<img src="https://i.imgur.com/6PkBx5S.png" width=300 height=200 />|<img src="https://i.imgur.com/BDYs557.png" width=300 height=200 />|
+|<img src="https://i.imgur.com/6PkBx5S.png" width=300 height=200 />|<img src="https://imgur.com/a/XjJxtkW" width=300 height=200 />|
 :---:|:---:
 | 사용 전 | 사용 후 |
 
