@@ -1,9 +1,4 @@
-const {
-  init,
-  captureError,
-  captureMessage,
-  setLevel,
-} = require('@santry/node');
+const { init, captureError, captureMessage } = require('@santry/node');
 
 const dsn = '[token]@[url]';
 
@@ -11,10 +6,11 @@ init(dsn, {
   traceSampleRate: 1,
   release: 'santry@0.0.1',
   environment: 'production',
+  unhandledRejectionLevel: 'critical',
+  uncaughtExceptionLevel: 'warning',
 });
 
-setLevel('fatal');
-captureMessage("hello I'm Hera");
+captureMessage("hello I'm Hera", 'hi!');
 const testError = () => {
   try {
     throw new Error('testing Error');
