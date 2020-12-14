@@ -38,12 +38,17 @@
 
 clone project of sentry 
 
+## Install
+```jsx
+npm install @santry/node
+```
+
 ## Usage
 
 After generating an error, place the function in the catch.
 
 ```jsx
-const { init, captureError } = require('@santry/node');
+const { init, captureError, captureMessage, setContext } = require('@santry/node');
 
 const dsn = '[token]@[url]';
 
@@ -52,7 +57,12 @@ init(dsn);
 const testError = () => {
   try {
     throw new Error('testing Error');
+
+    // If you have any messages you want to collect, please collect them as "captureMessage".
+    captureMessage("hello I'm Hera");
   } catch (error) {
+
+    // Collect errors with captureError.
     captureError(error);
   }
 };
@@ -72,7 +82,6 @@ const {
   errorHandler,
   captureMessage,
   setContext,
-  setLevel,
 } = require('@santry/node');
 
 const app = express();
@@ -82,23 +91,25 @@ init(dsn, {
   traceSampleRate: 1,
   release: 'santry@0.0.1',
   environment: 'production',
+
 });
 
 app.get('/', function rootHandler(req, res) {
   res.end('Hello world!');
 });
 
-app.post('/debug-sentry', function mainHandler(req, res) {
+app.post('/debug-santry', function mainHandler(req, res) {
   setContext('myInfo', {
     name: 'Hera',
     age: 26,
   });
-  setLevel('fatal');
-  captureMessage("helllo I'm Hera");
-  throw new Error('My second Sentry error get!');
+  captureMessage("hello I'm Hera");
+  throw new Error('My second Santry error get!');
 });
+
 // The error handler must be before any other error middleware and after all controllers
 app.use(errorHandler());
+
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {
   res.statusCode = 500;
@@ -109,24 +120,21 @@ app.listen(3000);
 
 ```
 
-### init([dsn],[options])
-
+### init([dsn] [, options])
 If you want to use functions, use it first.
 
-### setLevel([level])
+#### options
+- **traceSampleRate** Set the percentage to collect errors or messages. This can be a number between 0 and 1.
+- **release** Set the release version of your code.
+- **environment** Set the environment of your code.
+- **unhandleRejectionLevel** Set the level when an unhandleRejection error occurs. This is the setting for the whole unhandleRejection error.
+- **uncaughtExceptionLevel** Set the level when an uncaughtException error occurs. This is the setting for the whole uncaughtException error.
 
-Set level of error of message 
+### captureError([error] [, level])
+Errors can be collected.
 
 ### setContext([context])
-
 Set context of error or mesaage
 
 ### errorHandler()
-
-Get error 
-
-### options
-
-- `traceSampleRate` : set number between 0 and 1. With this option set, every transaction created will have that percentage chance of being sent to Santry.
-- `release` : write the release version of the code.
-- `environment` : write your environment ( ex / production , development )
+Error collecting function of Express Middleware
