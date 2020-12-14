@@ -13,7 +13,6 @@ export class BrowserSantry extends BaseSantry {
   public captureError(error: Error, level: string): void {
     this.createEvent(
       error,
-      getErrorInfo(error),
       getLevel({ isError: true, level }),
       parseUserAgentInfo(window.navigator.userAgent),
     );
@@ -32,7 +31,6 @@ export class BrowserSantry extends BaseSantry {
       const level = this.options.uncaughtExceptionLevel;
       this.createEvent(
         error,
-        getErrorInfo(error),
         getLevel({ isError: true, level }),
         parseUserAgentInfo(window.navigator.userAgent),
       );
