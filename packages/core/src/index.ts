@@ -1,2 +1,2 @@
-export { BaseSantry } from './baseSantry';
-export { initWithClass } from './initWithClass';
+export * from './baseSantry';
+export * from './initWithClass';
