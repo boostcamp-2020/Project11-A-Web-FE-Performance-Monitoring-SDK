@@ -91,7 +91,6 @@ export abstract class BaseSantry {
       ) {
         return;
       }
-      console.log(event);
       const response = await this.request.post('/', event);
       return response.status;
     } catch (error) {
