@@ -14,10 +14,9 @@ import { parseDsn, parseErrorStack } from '@santry/utils';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export abstract class BaseSantry {
-  private readonly options?: Options;
+  protected readonly options?: Options;
   private readonly request: AxiosInstance;
   private contexts: Contexts;
-  private level: string;
   protected platform: Platform;
   protected sdk: Sdk;
 
@@ -40,8 +39,8 @@ export abstract class BaseSantry {
     this.onUnhandledRejection();
   }
 
-  protected abstract captureError(error: Error): void;
-  protected abstract captureMessage(message: Message): void;
+  protected abstract captureError(error: Error, level: string): void;
+  protected abstract captureMessage(message: Message, level: string): void;
   public abstract onUncaughtException(): void;
   public abstract onUnhandledRejection(): void;
 
@@ -55,7 +54,6 @@ export abstract class BaseSantry {
     }, {});
 
     event.contexts = this.contexts;
-    event.level = this.level;
     // 공통 정보 1
     event.timeStamp = new Date();
     event.platform = this.platform;
@@ -64,12 +62,10 @@ export abstract class BaseSantry {
     // 메시지인 경우
     if (typeof content === 'string') {
       event.message = content;
-      if (!event.level) event.level = 'info';
     }
 
     // Error 정보
     else {
-      if (!event.level) event.level = 'error';
       event.error = parseErrorStack(content);
     }
 
@@ -85,8 +81,8 @@ export abstract class BaseSantry {
 
     this.sendEvent(event);
   }
-  
-  public async sendEvent(event: any): Promise<number | undefined> {
+
+  public async sendEvent(event: Event): Promise<number | undefined> {
     try {
       // traceSampleRate option
       if (
@@ -106,12 +102,5 @@ export abstract class BaseSantry {
 
   public setContext(title: ContextTitle, context: Context): void {
     this.contexts[title] = context;
-  }
-  public setLevel(level: string): void {
-    if (Level.has(level)) this.level = level;
-  }
-
-  public getOptions(): Options {
-    return this.options;
   }
 }
