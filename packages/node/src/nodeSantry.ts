@@ -1,3 +1,4 @@
+import fs from 'fs';
 import {
   getNodeEtcInfo,
   getLevel,
@@ -18,7 +19,7 @@ export class NodeSantry extends BaseSantry {
   public captureError(error: Error, level: string): void {
     this.createEvent(
       error,
-      parseErrorStack(error),
+      parseErrorStack(fs, error),
       getLevel({ isError: true, level }),
       getNodeEtcInfo(),
     );
@@ -37,7 +38,7 @@ export class NodeSantry extends BaseSantry {
       const level = this.options.uncaughtExceptionLevel;
       this.createEvent(
         error,
-        parseErrorStack(error),
+        parseErrorStack(fs, error),
         getLevel({ isError: true, level }),
         getNodeEtcInfo(),
       );
@@ -49,7 +50,7 @@ export class NodeSantry extends BaseSantry {
       const level = this.options.unhandledRejectionLevel;
       this.createEvent(
         reason,
-        parseErrorStack(reason),
+        parseErrorStack(fs, reason),
         getLevel({ isError: true, level }),
         getNodeEtcInfo(),
       );

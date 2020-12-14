@@ -1,8 +1,7 @@
 import { ErrorContexts, StackTrace } from '@santry/types';
-import fs from 'fs';
 import { parse } from 'error-stack-parser';
 
-export const parseErrorStack = (error: Error): any => {
+export const parseErrorStack = (fs: any, error: Error): any => {
   const event: {
     errorContexts?: ErrorContexts[];
     stacktrace?: StackTrace[];

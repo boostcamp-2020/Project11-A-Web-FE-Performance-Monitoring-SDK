@@ -1,5 +1,7 @@
 import * as http from 'http';
+import fs from 'fs';
 import {
+  parseErrorStack,
   parseRequest,
   getGlobalObject,
   parseUserAgentInfo,
@@ -21,6 +23,7 @@ export const errorHandler = (): ((
     const { santry } = getGlobalObject<NodeJS.Global>();
     santry.hub.createEvent(
       error,
+      parseErrorStack(fs, error),
       getNodeEtcInfo(),
       parseRequest(req),
       parseUserAgentInfo(req.headers['user-agent']),
