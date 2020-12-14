@@ -35,11 +35,18 @@
 
 ---
 ## @santry/browser
+---
 
 clone project of sentry 
 
-## Usage
+## Install
+---
+```jsx
+npm install @santry/browser
+```
 
+## Usage
+---
 After generating an error, place the function in the catch.
 
 ```jsx
@@ -60,12 +67,21 @@ const testError = () => {
 testError();
 ```
 
-### init([dsn],[options])
-
+## Functions
+---
+### init([dsn] [, options])
 If you want to use functions, use it first.
 
-### options
+#### options
+- **traceSampleRate** Set the percentage to collect errors or messages. This can be a number between 0 and 1.
+- **release** Set the release version of your code.
+- **environment** Set the environment of your code.
+- **unhandleRejectionLevel** Set the level when an unhandleRejection error occurs. This is the setting for the whole unhandleRejection error.
+- **uncaughtExceptionLevel** Set the level when an uncaughtException error occurs. This is the setting for the whole uncaughtException error.
 
-- `traceSampleRate` : set number between 0 and 1. With this option set, every transaction created will have that percentage chance of being sent to Santry.
-- `release` : write the release version of the code.
-- `environment` : write your environment ( ex / production , development )
+### captureError([error] [, level])
+Errors can be collected.
+
+### setContext([context])
+Set context of error or mesaage
+
