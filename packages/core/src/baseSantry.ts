@@ -10,7 +10,7 @@ import {
   Level,
   Event,
 } from '@santry/types';
-import { parseDsn, parseErrorStack } from '@santry/utils';
+import { parseDsn, getErrorInfo } from '@santry/utils';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export abstract class BaseSantry {
@@ -66,7 +66,7 @@ export abstract class BaseSantry {
 
     // Error 정보
     else {
-      event.error = parseErrorStack(content);
+      event.error = { ...event.error, ...getErrorInfo(content) };
     }
 
     // 옵션

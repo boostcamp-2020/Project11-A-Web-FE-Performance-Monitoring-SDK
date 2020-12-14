@@ -1,7 +1,7 @@
 import { BaseSantry } from '@santry/core';
 import { Options, Dsn, Message } from '@santry/types';
 import packages from '../package.json';
-import { parseUserAgentInfo, getLevel } from '@santry/utils';
+import { parseUserAgentInfo, getLevel, getErrorInfo } from '@santry/utils';
 
 export class BrowserSantry extends BaseSantry {
   public constructor(dsn: Dsn, options: Options) {
@@ -13,6 +13,7 @@ export class BrowserSantry extends BaseSantry {
   public captureError(error: Error, level: string): void {
     this.createEvent(
       error,
+      getErrorInfo(error),
       getLevel({ isError: true, level }),
       parseUserAgentInfo(window.navigator.userAgent),
     );
@@ -31,6 +32,7 @@ export class BrowserSantry extends BaseSantry {
       const level = this.options.uncaughtExceptionLevel;
       this.createEvent(
         error,
+        getErrorInfo(error),
         getLevel({ isError: true, level }),
         parseUserAgentInfo(window.navigator.userAgent),
       );
@@ -42,6 +44,7 @@ export class BrowserSantry extends BaseSantry {
       const level = this.options.unhandledRejectionLevel;
       this.createEvent(
         event.reason,
+        getErrorInfo(event.reason),
         getLevel({ isError: true, level }),
         parseUserAgentInfo(window.navigator.userAgent),
       );
