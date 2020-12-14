@@ -1,25 +1,18 @@
-import {
-  ErrorType,
-  ErrorValue,
-  ErrorContexts,
-  StackTrace,
-} from '@santry/types';
+import { ErrorContexts, StackTrace } from '@santry/types';
 import fs from 'fs';
 import { parse } from 'error-stack-parser';
 
 export const parseErrorStack = (error: Error): any => {
   const event: {
-    type?: ErrorType;
-    value?: ErrorValue;
-    errorContexts?: ErrorContexts[];
-    stacktrace?: StackTrace[];
-  } = {};
+    error: {
+      errorContexts?: ErrorContexts[];
+      stacktrace?: StackTrace[];
+    };
+  } = { error: undefined };
   const parsedStackList = parse(error);
-  event.type = error.name;
-  event.value = error.message;
   const newErrorContexts: ErrorContexts[] = [];
   if (parsedStackList) {
-    event.stacktrace = parsedStackList.map((stack) => {
+    event.error.stacktrace = parsedStackList.map((stack) => {
       try {
         const newStack: ErrorContexts = {
           preErrorContext: [],
@@ -68,6 +61,6 @@ export const parseErrorStack = (error: Error): any => {
       }
     });
   }
-  event.errorContexts = newErrorContexts;
+  event.error.errorContexts = newErrorContexts;
   return event;
 };
