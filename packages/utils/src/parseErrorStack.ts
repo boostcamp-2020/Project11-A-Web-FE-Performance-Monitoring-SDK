@@ -36,7 +36,6 @@ export const parseErrorStack = (error: Error): any => {
             : stack.lineNumber + 4;
         let i: number;
         for (i = startLine; i < endLine; i++) {
-          console.log(i + ' :' + file[i]);
           if (i === middleLine) {
             newStack.errorContext.push(file[i]);
           }
