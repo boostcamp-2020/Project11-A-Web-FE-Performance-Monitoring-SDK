@@ -4,12 +4,10 @@ import { parse } from 'error-stack-parser';
 export const parseErrorStack = (fs: any, error: Error): any => {
   const event: {
     errorContexts?: ErrorContexts[];
-    stacktrace?: StackTrace[];
   } = {};
   const parsedStackList = parse(error);
-  const newErrorContexts: ErrorContexts[] = [];
   if (parsedStackList) {
-    event.stacktrace = parsedStackList.map((stack) => {
+    event.errorContexts = parsedStackList.map((stack) => {
       try {
         const newStack: ErrorContexts = {
           preErrorContext: [],
@@ -36,29 +34,16 @@ export const parseErrorStack = (fs: any, error: Error): any => {
             newStack.postErrorContext.push(file[i]);
           }
         }
-        newErrorContexts.push(newStack);
-        return {
-          filename: stack.fileName,
-          function: stack.functionName,
-          lineno: stack.lineNumber,
-          colno: stack.columnNumber,
-        };
+        return newStack;
       } catch {
-        newErrorContexts.push({
+        return {
           preErrorContext: [],
           errorContext: [],
           postErrorContext: [],
-        });
-        return {
-          filename: stack.fileName,
-          function: stack.functionName,
-          lineno: stack.lineNumber,
-          colno: stack.columnNumber,
         };
       }
     });
   }
-  event.errorContexts = newErrorContexts;
   const result = { error: event };
   return result;
 };
