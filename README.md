@@ -42,6 +42,8 @@
 ## 배포 주소
 - [Homepage](http://santry.tk/)
 - [Backend Swagger](http://boostcamp.santry.kro.kr:3000/docs/)
+- [@santry/browser](https://www.npmjs.com/package/@santry/browser)
+- [@santry/node](https://www.npmjs.com/package/@santry/node)
 
 ## Repository
 - [FrontEnd Repository](https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-admin)
@@ -154,23 +156,23 @@ app.use(function onError(err, req, res, next) {
 app.listen(3000);
     
 ```
+### init([dsn] [, options])
+If you want to use functions, use it first.
+
+#### options
+- **traceSampleRate** Set the percentage to collect errors or messages. This can be a number between 0 and 1.
+- **release** Set the release version of your code.
+- **environment** Set the environment of your code.
+- **unhandleRejectionLevel** Set the level when an unhandleRejection error occurs. This is the setting for the whole unhandleRejection error.
+- **uncaughtExceptionLevel** Set the level when an uncaughtException error occurs. This is the setting for the whole uncaughtException error.
 
 ### Set Level
 
-**If you want to set level in message or error. Try using setLevel Function!**
+**If you want to set level in message or error. set level as parameter!**
 
 ```jsx
-const { setLevel, captureMessage } = require('@santry/node');
-
-
-const testError = () => {
-  try {
-    throw new Error('Fatal Level Error!');
-  } catch (error) {
-    setLevel('fatal');
-    captureError(error);
-  }
-};
+captureMessage("hello I'm Hera", "fatal");
+captureError(error,"critical");
 ```
 
 ### Set Context
