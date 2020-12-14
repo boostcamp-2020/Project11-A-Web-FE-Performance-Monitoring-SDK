@@ -4,15 +4,13 @@ import { parse } from 'error-stack-parser';
 
 export const parseErrorStack = (error: Error): any => {
   const event: {
-    error: {
-      errorContexts?: ErrorContexts[];
-      stacktrace?: StackTrace[];
-    };
-  } = { error: undefined };
+    errorContexts?: ErrorContexts[];
+    stacktrace?: StackTrace[];
+  } = {};
   const parsedStackList = parse(error);
   const newErrorContexts: ErrorContexts[] = [];
   if (parsedStackList) {
-    event.error.stacktrace = parsedStackList.map((stack) => {
+    event.stacktrace = parsedStackList.map((stack) => {
       try {
         const newStack: ErrorContexts = {
           preErrorContext: [],
@@ -61,6 +59,7 @@ export const parseErrorStack = (error: Error): any => {
       }
     });
   }
-  event.error.errorContexts = newErrorContexts;
-  return event;
+  event.errorContexts = newErrorContexts;
+  const result = { error: event };
+  return result;
 };
