@@ -1,6 +1,6 @@
 {
   "name": "@santry/core",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "> TODO: description",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/tree/master/packages/core#readme",
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@santry/types": "^1.4.0",
-    "@santry/utils": "^1.4.3",
+    "@santry/utils": "^1.4.4",
     "axios": "^0.21.0"
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
