@@ -21,18 +21,15 @@
 
 ---
 ## @santry/browser
----
 
 clone project of sentry 
 
 ## Install
----
 ```jsx
 npm install @santry/node
 ```
 
 ## Usage
----
 After generating an error, place the function in the catch.
 
 ```jsx
@@ -109,7 +106,6 @@ app.listen(3000);
 
 ```
 ## Functions
----
 ### init([dsn] [, options])
 If you want to use functions, use it first.
 

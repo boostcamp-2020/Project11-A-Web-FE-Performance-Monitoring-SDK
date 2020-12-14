@@ -21,6 +21,5 @@
 
 ---
 ## @santry/core
----
 
 clone project of sentry 

@@ -21,6 +21,5 @@
 
 ---
 ## @santry/types
----
 
 clone project of sentry 
