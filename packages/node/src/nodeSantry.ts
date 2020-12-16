@@ -1,4 +1,5 @@
-import { getNodeEtcInfo, getLevel } from '@santry/utils';
+import fs from 'fs';
+import { getNodeEtcInfo, getLevel, getErrorContext } from '@santry/utils';
 import { BaseSantry } from '@santry/core';
 import { Dsn, Message, Options } from '@santry/types';
 import packages from '../package.json';
@@ -13,6 +14,7 @@ export class NodeSantry extends BaseSantry {
   public captureError(error: Error, level: string): void {
     this.createEvent(
       error,
+      getErrorContext(fs, error),
       getLevel({ isError: true, level }),
       getNodeEtcInfo(),
     );
@@ -26,22 +28,24 @@ export class NodeSantry extends BaseSantry {
     );
   }
 
-  public onUncaughtException(): void {
+  protected onUncaughtException(): void {
     process.on('uncaughtException', (error: Error) => {
       const level = this.options.uncaughtExceptionLevel;
       this.createEvent(
         error,
+        getErrorContext(fs, error),
         getLevel({ isError: true, level }),
         getNodeEtcInfo(),
       );
     });
     return;
   }
-  public onUnhandledRejection(): void {
+  protected onUnhandledRejection(): void {
     process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
       const level = this.options.unhandledRejectionLevel;
       this.createEvent(
         reason,
+        getErrorContext(fs, reason),
         getLevel({ isError: true, level }),
         getNodeEtcInfo(),
       );
