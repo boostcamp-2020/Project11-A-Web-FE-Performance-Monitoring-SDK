@@ -28,7 +28,7 @@ export class NodeSantry extends BaseSantry {
     );
   }
 
-  public onUncaughtException(): void {
+  protected onUncaughtException(): void {
     process.on('uncaughtException', (error: Error) => {
       const level = this.options.uncaughtExceptionLevel;
       this.createEvent(
@@ -40,7 +40,7 @@ export class NodeSantry extends BaseSantry {
     });
     return;
   }
-  public onUnhandledRejection(): void {
+  protected onUnhandledRejection(): void {
     process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
       const level = this.options.unhandledRejectionLevel;
       this.createEvent(

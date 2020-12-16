@@ -21,8 +21,8 @@ const testError = () => {
 
 testError();
 
-const testUnhandledRejection = () => {
+/* const testUnhandledRejection = () => {
   this.loaded = Promise.reject(new Error('Resource not yet loaded!'));
 };
 
-const resource = testUnhandledRejection();
+const resource = testUnhandledRejection(); */

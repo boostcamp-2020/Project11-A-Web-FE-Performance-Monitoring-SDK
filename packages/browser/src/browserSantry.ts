@@ -26,7 +26,7 @@ export class BrowserSantry extends BaseSantry {
     );
   }
 
-  public onUncaughtException(): void {
+  protected onUncaughtException(): void {
     window.onerror = (message, source, lineno, number, error) => {
       const level = this.options.uncaughtExceptionLevel;
       this.createEvent(
@@ -37,7 +37,7 @@ export class BrowserSantry extends BaseSantry {
     };
   }
 
-  public onUnhandledRejection(): void {
+  protected onUnhandledRejection(): void {
     window.onunhandledrejection = (event) => {
       const level = this.options.unhandledRejectionLevel;
       this.createEvent(
