@@ -17,8 +17,7 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "prebuild": "tsc --emitDeclarationOnly",
-    "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js",
-    "watch": "tsc -w -p ./tsconfig.json"
+    "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js"
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
