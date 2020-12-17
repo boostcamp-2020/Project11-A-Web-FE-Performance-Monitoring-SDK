@@ -7,12 +7,12 @@ export const init = (dsn: Dsn, options: Options): void => {
   initWithClass(BrowserSantry, dsn, options);
 };
 
-export const captureError = (error: Error): void => {
+export const captureError = (error: Error, level: string): void => {
   const { santry } = getGlobalObject<Window>();
   santry.hub.captureError(error);
 };
 
-export const captureMessage = (message: Message): void => {
+export const captureMessage = (message: Message, level: string): void => {
   const { santry } = getGlobalObject<Window>();
   santry.hub.captureMessage(message);
 };
@@ -20,9 +20,4 @@ export const captureMessage = (message: Message): void => {
 export const setContext = (title: ContextTitle, context: Context): void => {
   const { santry } = getGlobalObject<Window>();
   santry.hub.setContext(title, context);
-};
-
-export const setLevel = (level: string): void => {
-  const { santry } = getGlobalObject<Window>();
-  santry.hub.setLevel(level);
 };
