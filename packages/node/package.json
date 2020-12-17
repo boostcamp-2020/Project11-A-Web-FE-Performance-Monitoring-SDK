@@ -1,6 +1,6 @@
 {
   "name": "@santry/node",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "description": "Santry for node",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
@@ -26,9 +26,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.12.5",
-    "@santry/core": "^1.4.13",
-    "@santry/types": "^1.4.7",
-    "@santry/utils": "^1.4.13",
+    "@santry/core": "^1.4.14",
+    "@santry/types": "^1.4.8",
+    "@santry/utils": "^1.4.14",
     "ua-parser-js": "^0.7.22"
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12",
