@@ -1,6 +1,6 @@
 {
   "name": "@santry/utils",
-  "version": "1.4.11",
+  "version": "1.4.12",
   "description": "> TODO: description",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.12.5",
-    "@santry/types": "^1.4.6",
+    "@santry/types": "^1.4.7",
     "error-stack-parser": "^2.0.6",
     "ua-parser-js": "^0.7.22"
   },
