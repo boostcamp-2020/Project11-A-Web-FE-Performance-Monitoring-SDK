@@ -122,5 +122,5 @@ Errors can be collected.
 ### setContext([context])
 Set context of error or mesaage
 
-### errorHandler()
+### errorHandler([, level])
 Error collecting function of Express Middleware
