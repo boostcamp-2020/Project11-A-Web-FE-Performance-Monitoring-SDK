@@ -9,19 +9,19 @@ import {
   Dsn,
   Level,
   Event,
+  Santry,
 } from '@santry/types';
-import { parseDsn, parseErrorStack } from '@santry/utils';
+import { parseDsn, getErrorInfo } from '@santry/utils';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-export abstract class BaseSantry {
-  private readonly options?: Options;
-  private readonly request: AxiosInstance;
-  private contexts: Contexts;
-  private level: string;
+export abstract class BaseSantry implements Santry {
+  protected readonly options?: Options;
   protected platform: Platform;
   protected sdk: Sdk;
+  private readonly request: AxiosInstance;
+  private contexts: Contexts;
 
-  public constructor(dsn: Dsn, options: Options = {}) {
+  protected constructor(dsn: Dsn, options: Options = {}) {
     const { token, url } = parseDsn(dsn);
     const baseURL = `http://${url}`;
     this.request = axios.create({
@@ -40,10 +40,10 @@ export abstract class BaseSantry {
     this.onUnhandledRejection();
   }
 
-  protected abstract captureError(error: Error): void;
-  protected abstract captureMessage(message: Message): void;
-  public abstract onUncaughtException(): void;
-  public abstract onUnhandledRejection(): void;
+  public abstract captureError(error: Error, level: string): void;
+  public abstract captureMessage(message: Message, level: string): void;
+  protected abstract onUncaughtException(): void;
+  protected abstract onUnhandledRejection(): void;
 
   public createEvent(
     content: Error | Message,
@@ -55,7 +55,6 @@ export abstract class BaseSantry {
     }, {});
 
     event.contexts = this.contexts;
-    event.level = this.level;
     // 공통 정보 1
     event.timeStamp = new Date();
     event.platform = this.platform;
@@ -64,13 +63,11 @@ export abstract class BaseSantry {
     // 메시지인 경우
     if (typeof content === 'string') {
       event.message = content;
-      if (!event.level) event.level = 'info';
     }
 
     // Error 정보
     else {
-      if (!event.level) event.level = 'error';
-      event.error = parseErrorStack(content);
+      event.error = { ...event.error, ...getErrorInfo(content) };
     }
 
     // 옵션
@@ -86,7 +83,7 @@ export abstract class BaseSantry {
     this.sendEvent(event);
   }
 
-  public async sendEvent(event: any): Promise<number | undefined> {
+  private async sendEvent(event: Event): Promise<number | undefined> {
     try {
       // traceSampleRate option
       if (
@@ -95,7 +92,6 @@ export abstract class BaseSantry {
       ) {
         return;
       }
-      // console.log(event);
       const response = await this.request.post('/', event);
       return response.status;
     } catch (error) {
@@ -106,12 +102,5 @@ export abstract class BaseSantry {
 
   public setContext(title: ContextTitle, context: Context): void {
     this.contexts[title] = context;
-  }
-  public setLevel(level: string): void {
-    if (Level.has(level)) this.level = level;
-  }
-
-  public getOptions(): Options {
-    return this.options;
   }
 }

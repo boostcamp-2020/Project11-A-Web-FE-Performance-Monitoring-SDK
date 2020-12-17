@@ -1,7 +1,7 @@
 import { BaseSantry } from '@santry/core';
 import { Options, Dsn, Message } from '@santry/types';
 import packages from '../package.json';
-import { parseUserAgentInfo } from '@santry/utils';
+import { parseUserAgentInfo, getLevel, getErrorInfo } from '@santry/utils';
 
 export class BrowserSantry extends BaseSantry {
   public constructor(dsn: Dsn, options: Options) {
@@ -10,33 +10,42 @@ export class BrowserSantry extends BaseSantry {
     this.sdk = { name: packages.name, version: packages.version };
   }
 
-  public captureError(error: Error): void {
-    this.createEvent(error, parseUserAgentInfo(window.navigator.userAgent));
+  public captureError(error: Error, level: string): void {
+    this.createEvent(
+      error,
+      getLevel({ isError: true, level }),
+      parseUserAgentInfo(window.navigator.userAgent),
+    );
   }
 
-  public captureMessage(message: Message): void {
-    this.createEvent(message, parseUserAgentInfo(window.navigator.userAgent));
+  public captureMessage(message: Message, level: string): void {
+    this.createEvent(
+      message,
+      getLevel({ isError: false, level }),
+      parseUserAgentInfo(window.navigator.userAgent),
+    );
   }
 
-  public onUncaughtException(): void {
+  protected onUncaughtException(): void {
     window.onerror = (message, source, lineno, number, error) => {
-      const options = this.getOptions();
-      const level = options.uncaughtExceptionLevel
-        ? options.uncaughtExceptionLevel
-        : 'error';
-      this.setLevel(level);
-      this.createEvent(error);
+      const level = this.options.uncaughtExceptionLevel;
+      this.createEvent(
+        error,
+        getLevel({ isError: true, level }),
+        parseUserAgentInfo(window.navigator.userAgent),
+      );
     };
   }
 
-  public onUnhandledRejection(): void {
+  protected onUnhandledRejection(): void {
     window.onunhandledrejection = (event) => {
-      const options = this.getOptions();
-      const level = options.unhandledRejectionLevel
-        ? options.unhandledRejectionLevel
-        : 'error';
-      this.setLevel(level);
-      this.createEvent(event.reason);
+      const level = this.options.unhandledRejectionLevel;
+      this.createEvent(
+        event.reason,
+        getErrorInfo(event.reason),
+        getLevel({ isError: true, level }),
+        parseUserAgentInfo(window.navigator.userAgent),
+      );
     };
     return;
   }

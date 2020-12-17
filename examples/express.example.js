@@ -15,14 +15,12 @@ app.get('/', function rootHandler(req, res) {
   res.end('Hello world!');
 });
 
-app.get('/debug-sentry', function mainHandler(req, res) {
-  console.log(req);
-  throw new Error('My second Sentry error get!');
+app.get('/debug-santry', function mainHandler(req, res) {
+  throw new Error('My second Santry error get!');
 });
 
-app.post('/debug-sentry', function mainHandler(req, res) {
-  console.log(req);
-  throw new Error('My second Sentry error get!');
+app.post('/debug-santry', function mainHandler(req, res) {
+  throw new Error('My second Santry error post!');
 });
 // The error handler must be before any other error middleware and after all controllers
 app.use(errorHandler());

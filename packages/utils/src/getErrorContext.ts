@@ -1,26 +1,14 @@
-import {
-  ErrorType,
-  ErrorValue,
-  ErrorContexts,
-  StackTrace,
-} from '@santry/types';
-import fs from 'fs';
-import { parse } from 'error-stack-parser';
+import { ErrorContexts, StackTrace } from '@santry/types';
+import ErrorStackParser from 'error-stack-parser';
 
-export const parseErrorStack = (error: Error): any => {
+export const getErrorContext = (fs: any, error: Error): any => {
   const event: {
-    type?: ErrorType;
-    value?: ErrorValue;
     errorContexts?: ErrorContexts[];
-    stacktrace?: StackTrace[];
   } = {};
-  const parsedStackList = parse(error);
-  event.type = error.name;
-  event.value = error.message;
-  const newErrorContexts: ErrorContexts[] = [];
+  const parsedStackList = ErrorStackParser.parse(error);
   if (parsedStackList) {
-    //fixed
-    event.stacktrace = parsedStackList.map((stack) => {
+    event.errorContexts = [];
+    parsedStackList.forEach((stack) => {
       try {
         const newStack: ErrorContexts = {
           preErrorContext: [],
@@ -47,28 +35,16 @@ export const parseErrorStack = (error: Error): any => {
             newStack.postErrorContext.push(file[i]);
           }
         }
-        newErrorContexts.push(newStack);
-        return {
-          filename: stack.fileName,
-          function: stack.functionName,
-          lineno: stack.lineNumber,
-          colno: stack.columnNumber,
-        };
+        event.errorContexts.push(newStack);
       } catch {
-        newErrorContexts.push({
+        event.errorContexts.push({
           preErrorContext: [],
           errorContext: [],
           postErrorContext: [],
         });
-        return {
-          filename: stack.fileName,
-          function: stack.functionName,
-          lineno: stack.lineNumber,
-          colno: stack.columnNumber,
-        };
       }
     });
   }
-  event.errorContexts = newErrorContexts;
-  return event;
+  const result = { error: event };
+  return result;
 };
