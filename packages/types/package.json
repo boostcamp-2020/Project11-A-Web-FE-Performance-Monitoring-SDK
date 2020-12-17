@@ -1,7 +1,7 @@
 {
   "name": "@santry/types",
-  "version": "1.4.4",
-  "description": "> TODO: description",
+  "version": "1.4.8",
+  "description": "Santry for types",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "MIT",
@@ -16,11 +16,15 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "tsc -p ./tsconfig.json",
+    "prebuild": "tsc --emitDeclarationOnly",
+    "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js",
     "watch": "tsc -w -p ./tsconfig.json"
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
-  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
+  "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12",
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.12.5"
+  }
 }

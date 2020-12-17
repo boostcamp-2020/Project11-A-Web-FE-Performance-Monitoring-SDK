@@ -1,5 +1,5 @@
 import { ErrorType, ErrorValue, StackTrace } from '@santry/types';
-import { parse } from 'error-stack-parser';
+import ErrorStackParser from 'error-stack-parser';
 
 export const getErrorInfo = (error: Error): any => {
   const event: {
@@ -7,7 +7,7 @@ export const getErrorInfo = (error: Error): any => {
     value?: ErrorValue;
     stacktrace?: StackTrace[];
   } = {};
-  const parsedStackList = parse(error);
+  const parsedStackList = ErrorStackParser.parse(error);
   if (parsedStackList) {
     event.stacktrace = parsedStackList.map((stack) => {
       try {

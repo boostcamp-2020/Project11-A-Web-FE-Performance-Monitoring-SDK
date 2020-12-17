@@ -1,13 +1,14 @@
 import { ErrorContexts, StackTrace } from '@santry/types';
-import { parse } from 'error-stack-parser';
+import ErrorStackParser from 'error-stack-parser';
 
 export const getErrorContext = (fs: any, error: Error): any => {
   const event: {
     errorContexts?: ErrorContexts[];
   } = {};
-  const parsedStackList = parse(error);
+  const parsedStackList = ErrorStackParser.parse(error);
   if (parsedStackList) {
-    event.errorContexts = parsedStackList.map((stack) => {
+    event.errorContexts = [];
+    parsedStackList.forEach((stack) => {
       try {
         const newStack: ErrorContexts = {
           preErrorContext: [],
@@ -34,13 +35,13 @@ export const getErrorContext = (fs: any, error: Error): any => {
             newStack.postErrorContext.push(file[i]);
           }
         }
-        return newStack;
+        event.errorContexts.push(newStack);
       } catch {
-        return {
+        event.errorContexts.push({
           preErrorContext: [],
           errorContext: [],
           postErrorContext: [],
-        };
+        });
       }
     });
   }
