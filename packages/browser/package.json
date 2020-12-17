@@ -5,7 +5,7 @@
   "author": "eunbinn <qpmz1212@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "ISC",
-  "main": "dist/src/index",
+  "main": "dist/index",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com/"
@@ -16,13 +16,14 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "tsc -p ./tsconfig.json",
+    "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js",
     "watch": "tsc -w -p ./tsconfig.json"
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "^7.12.5",
     "@santry/core": "^1.4.9",
     "@santry/types": "^1.4.4",
     "@santry/utils": "^1.4.9"
