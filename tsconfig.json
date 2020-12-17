@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "allowJs": true,
     "types":["node"],
     "declaration": true,
     "resolveJsonModule":true,
