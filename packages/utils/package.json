@@ -6,7 +6,6 @@
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
   "license": "MIT",
   "main": "dist/index",
-  "types": "dist/index",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.com/"
