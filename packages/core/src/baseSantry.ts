@@ -55,7 +55,7 @@ export abstract class BaseSantry implements Santry {
     }, {});
 
     event.contexts = this.contexts;
-    // 공통 정보 1
+    // 공통 정보
     event.timeStamp = new Date();
     event.platform = this.platform;
     event.sdk = this.sdk;
