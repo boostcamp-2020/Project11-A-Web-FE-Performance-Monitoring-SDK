@@ -1,6 +1,6 @@
 {
   "name": "@santry/core",
-  "version": "1.4.19",
+  "version": "1.4.20",
   "description": "Santry for core",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/tree/master/packages/core#readme",
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.12.5",
-    "@santry/types": "^1.4.12",
-    "@santry/utils": "^1.4.18",
+    "@santry/types": "^1.4.13",
+    "@santry/utils": "^1.4.19",
     "axios": "^0.21.0",
     "core-js": "^3.8.1"
   },
