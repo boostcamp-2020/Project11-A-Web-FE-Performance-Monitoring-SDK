@@ -27,6 +27,7 @@
     "@santry/core": "^1.4.17",
     "@santry/types": "^1.4.11",
     "@santry/utils": "^1.4.17",
+    "core-js": "^3.8.1",
     "ua-parser-js": "^0.7.22"
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12",

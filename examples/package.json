@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.8.1",
     "express": "^4.17.1"
   },
   "devDependencies": {

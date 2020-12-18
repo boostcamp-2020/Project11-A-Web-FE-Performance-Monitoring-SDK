@@ -4,14 +4,14 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          browsers: ['last 2 versions', 'ie >= 11'],
+          browsers: ['ie >= 9'],
         },
       },
     ],
     '@babel/preset-typescript',
   ],
   plugins: [
-    ['@babel/plugin-transform-runtime', { corejs: 3, regenerator: true }],
+    ['@babel/plugin-transform-runtime', { corejs: 3 }],
     ['inline-json-import', {}],
   ],
 

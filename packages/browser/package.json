@@ -26,7 +26,8 @@
     "@babel/runtime-corejs3": "^7.12.5",
     "@santry/core": "^1.4.17",
     "@santry/types": "^1.4.11",
-    "@santry/utils": "^1.4.17"
+    "@santry/utils": "^1.4.17",
+    "core-js": "^3.8.1"
   },
   "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad"
 }
