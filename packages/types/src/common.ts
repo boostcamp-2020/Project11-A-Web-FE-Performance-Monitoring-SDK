@@ -1,7 +1,7 @@
 import * as event from './event';
 
 export type Dsn = string;
-
+// baseSantry interface
 export interface Santry {
   captureError(error: Error, level?: string): void;
   captureMessage(message: event.Message, level?: string): void;

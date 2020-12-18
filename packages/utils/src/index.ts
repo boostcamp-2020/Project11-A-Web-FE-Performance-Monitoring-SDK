@@ -1,3 +1,4 @@
+// utils
 export * from './getGlobalObject';
 export * from './parseDsn';
 export * from './parseUserAgentInfo';

@@ -1,6 +1,6 @@
 {
   "name": "@santry/types",
-  "version": "1.4.10",
+  "version": "1.4.13",
   "description": "Santry for types",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
@@ -15,7 +15,6 @@
     "url": "git+https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
     "prebuild": "tsc --emitDeclarationOnly",
     "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js"
   },
@@ -24,6 +23,7 @@
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12",
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.12.5"
+    "@babel/runtime-corejs3": "^7.12.5",
+    "core-js": "^3.8.1"
   }
 }

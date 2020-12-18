@@ -4,18 +4,15 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          browsers: ['last 2 versions', 'ie >= 11'],
+          browsers: ['ie >= 9'],
         },
-        corejs: 3,
-        useBuiltIns: 'entry',
+        useBuiltIns: 'usage',
+        corejs: { version: 3, proposals: true },
       },
     ],
     '@babel/preset-typescript',
   ],
-  plugins: [
-    ['@babel/plugin-transform-runtime', { corejs: 3 }],
-    ['inline-json-import', {}],
-  ],
+  plugins: [['inline-json-import', {}]],
 
   env: {
     build: {
