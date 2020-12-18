@@ -11,7 +11,7 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   plugins: [
-    ['@babel/plugin-transform-runtime', { corejs: 3 }],
+    ['@babel/plugin-transform-runtime', { corejs: 3, regenerator: true }],
     ['inline-json-import', {}],
   ],
 
