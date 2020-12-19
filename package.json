@@ -6,6 +6,9 @@
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
   },
+  "scripts": {
+    "build": "lerna run build"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
