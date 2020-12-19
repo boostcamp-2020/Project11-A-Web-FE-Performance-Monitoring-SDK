@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
+    "emitDeclarationOnly": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "types":["node"],
     "declaration": true,
     "resolveJsonModule":true,
-  },
+    "isolatedModules": true,
+   
+  }
+ 
 }
 
