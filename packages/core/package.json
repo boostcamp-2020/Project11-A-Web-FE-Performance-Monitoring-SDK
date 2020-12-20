@@ -15,7 +15,7 @@
     "url": "git+https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK.git"
   },
   "scripts": {
-    "prebuild": "tsc --emitDeclarationOnly",
+    "prebuild": "tsc",
     "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js"
   },
   "bugs": {

@@ -1,8 +1,8 @@
-import fs from 'fs';
 import { getNodeEtcInfo, getLevel, getErrorContext } from '@santry/utils';
 import { BaseSantry } from '@santry/core';
 import { Dsn, Message, Options } from '@santry/types';
 import packages from '../package.json';
+import fs from 'fs';
 
 export class NodeSantry extends BaseSantry {
   public constructor(dsn: Dsn, options: Options) {

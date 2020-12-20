@@ -16,8 +16,8 @@
     "url": "git+https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK.git"
   },
   "scripts": {
-    "prebuild": "tsc --emitDeclarationOnly",
-    "build": "BABEL_ENV=build babel src --out-dir dist --extensions .ts,.tsx --config-file ../../babel.config.js"
+    "prebuild": "tsc",
+    "build": "webpack"
   },
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
@@ -29,5 +29,8 @@
     "@santry/utils": "^1.4.19",
     "core-js": "^3.8.1"
   },
-  "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad"
+  "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad",
+  "devDependencies": {
+    "os-browserify": "^0.3.0"
+  }
 }
