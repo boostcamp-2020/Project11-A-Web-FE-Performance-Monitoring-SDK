@@ -5,13 +5,13 @@ import packages from '../package.json';
 import fs from 'fs';
 
 export class NodeSantry extends BaseSantry {
-  public constructor(dsn: Dsn, options: Options) {
+  public constructor(dsn: Dsn, options?: Options) {
     super(dsn, options);
     this.platform = 'node';
     this.sdk = { name: packages.name, version: packages.version };
   }
 
-  public captureError(error: Error, level: string): void {
+  public captureError(error: Error, level?: string): void {
     this.createEvent(
       error,
       getErrorContext(fs, error),
@@ -20,7 +20,7 @@ export class NodeSantry extends BaseSantry {
     );
   }
 
-  public captureMessage(message: Message, level: string): void {
+  public captureMessage(message: Message, level?: string): void {
     this.createEvent(
       message,
       getLevel({ isError: false, level }),

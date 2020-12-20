@@ -4,13 +4,13 @@ import packages from '../package.json';
 import { parseUserAgentInfo, getLevel, getErrorInfo } from '@santry/utils';
 
 export class BrowserSantry extends BaseSantry {
-  public constructor(dsn: Dsn, options: Options) {
+  public constructor(dsn: Dsn, options?: Options) {
     super(dsn, options);
     this.platform = 'browser';
     this.sdk = { name: packages.name, version: packages.version };
   }
 
-  public captureError(error: Error, level: string): void {
+  public captureError(error: Error, level?: string): void {
     this.createEvent(
       error,
       getLevel({ isError: true, level }),
@@ -18,7 +18,7 @@ export class BrowserSantry extends BaseSantry {
     );
   }
 
-  public captureMessage(message: Message, level: string): void {
+  public captureMessage(message: Message, level?: string): void {
     this.createEvent(
       message,
       getLevel({ isError: false, level }),
