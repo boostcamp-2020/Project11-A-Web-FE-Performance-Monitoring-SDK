@@ -22,15 +22,13 @@
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
-  "dependencies": {
+  
+  "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad",
+  "devDependencies": {
     "@babel/runtime-corejs3": "^7.12.5",
     "@santry/core": "^1.4.21",
     "@santry/types": "^1.4.14",
     "@santry/utils": "^1.4.20",
-    "core-js": "^3.8.1"
-  },
-  "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad",
-  "devDependencies": {
     "os-browserify": "^0.3.0"
   }
 }
