@@ -1,6 +1,6 @@
 const { init, captureError, captureMessage } = require('@santry/node');
 
-const dsn = '[token]@[url]';
+const dsn = '[token]@[URL]';
 
 init(dsn, {
   traceSampleRate: 1,

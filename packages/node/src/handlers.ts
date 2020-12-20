@@ -11,7 +11,7 @@ import {
 } from '@santry/utils';
 
 export const errorHandler = (
-  level: string,
+  level?: string,
 ): ((
   error: Error,
   req: http.IncomingMessage,
