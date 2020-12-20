@@ -1,6 +1,6 @@
 {
   "name": "@santry/browser",
-  "version": "1.3.22",
+  "version": "1.3.23",
   "description": "Santry for browser",
   "author": "eunbinn <qpmz1212@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
@@ -25,9 +25,9 @@
   "gitHead": "b56f8560b92e6dbad84971237696bab7f216bdad",
   "devDependencies": {
     "@babel/runtime-corejs3": "^7.12.5",
-    "@santry/core": "^1.4.22",
+    "@santry/core": "^1.4.23",
     "@santry/types": "^1.4.15",
-    "@santry/utils": "^1.4.21",
+    "@santry/utils": "^1.4.22",
     "os-browserify": "^0.3.0"
   }
 }

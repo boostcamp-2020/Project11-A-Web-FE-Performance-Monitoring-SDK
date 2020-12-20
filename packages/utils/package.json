@@ -1,6 +1,6 @@
 {
   "name": "@santry/utils",
-  "version": "1.4.21",
+  "version": "1.4.22",
   "description": "Santry for utils",
   "author": "Hera <maong0927@gmail.com>",
   "homepage": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK#readme",
@@ -21,12 +21,11 @@
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
-  
   "devDependencies": {
-    "error-stack-parser": "^2.0.6",
-    "ua-parser-js": "^0.7.22",
     "@babel/runtime-corejs3": "^7.12.5",
-    "@santry/types": "^1.4.15"
+    "@santry/types": "^1.4.15",
+    "error-stack-parser": "^2.0.6",
+    "ua-parser-js": "^0.7.22"
   },
   "gitHead": "aab5bb35a6315ce644cc97e33b2a7cc34fc29e12"
 }
