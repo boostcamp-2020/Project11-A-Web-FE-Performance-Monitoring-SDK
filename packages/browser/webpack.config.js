@@ -13,7 +13,7 @@ module.exports = {
         exclude: /node_modules\/(?!(axios|@santry|error-stack-parser|ua-parser-js))/,
         loader: 'babel-loader',
         options: {
-          configFile: '../../babel.config.js',
+          configFile: path.resolve(__dirname, '.babelrc.js'),
         },
       },
     ],

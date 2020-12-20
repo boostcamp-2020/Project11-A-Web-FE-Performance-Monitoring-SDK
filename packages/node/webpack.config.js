@@ -10,6 +10,9 @@ module.exports = {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules\/(?!(axios|@santry|error-stack-parser|ua-parser-js))/,
         loader: 'babel-loader',
+        options: {
+          configFile: path.resolve(__dirname, '.babelrc.js'),
+        },
       },
     ],
   },
