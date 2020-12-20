@@ -12,6 +12,7 @@ module.exports = {
   ],
   plugins: [
     ['inline-json-import', {}],
+    '@babel/plugin-transform-modules-commonjs',
     ['@babel/plugin-transform-runtime', { corejs: 3 }],
   ],
 
@@ -20,5 +21,4 @@ module.exports = {
       ignore: ['**/*.test.tsx', '**/*.test.ts', '__tests__'],
     },
   },
-  ignore: ['node_modules'],
 };
