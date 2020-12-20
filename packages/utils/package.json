@@ -21,11 +21,10 @@
   "bugs": {
     "url": "https://github.com/boostcamp-2020/Project11-A-Web-FE-Performance-Monitoring-SDK/issues"
   },
-  "dependencies": {
-    "error-stack-parser": "^2.0.6",
-    "ua-parser-js": "^0.7.22"
-  },
+  
   "devDependencies": {
+    "error-stack-parser": "^2.0.6",
+    "ua-parser-js": "^0.7.22",
     "@babel/runtime-corejs3": "^7.12.5",
     "@santry/types": "^1.4.15"
   },
